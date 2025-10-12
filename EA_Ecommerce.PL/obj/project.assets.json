@@ -33,6 +33,29 @@
             "related": ".pdb;.xml"
           }
         }
+      },
+      "EA_Ecommerce.BLL/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v9.0",
+        "dependencies": {
+          "EA_Ecommerce.DAL": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/EA_Ecommerce.BLL.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/EA_Ecommerce.BLL.dll": {}
+        }
+      },
+      "EA_Ecommerce.DAL/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v9.0",
+        "compile": {
+          "bin/placeholder/EA_Ecommerce.DAL.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/EA_Ecommerce.DAL.dll": {}
+        }
       }
     }
   },
@@ -67,10 +90,21 @@
         "microsoft.openapi.1.6.17.nupkg.sha512",
         "microsoft.openapi.nuspec"
       ]
+    },
+    "EA_Ecommerce.BLL/1.0.0": {
+      "type": "project",
+      "path": "../EA_Ecommerce.BLL/EA_Ecommerce.BLL.csproj",
+      "msbuildProject": "../EA_Ecommerce.BLL/EA_Ecommerce.BLL.csproj"
+    },
+    "EA_Ecommerce.DAL/1.0.0": {
+      "type": "project",
+      "path": "../EA_Ecommerce.DAL/EA_Ecommerce.DAL.csproj",
+      "msbuildProject": "../EA_Ecommerce.DAL/EA_Ecommerce.DAL.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net9.0": [
+      "EA_Ecommerce.BLL >= 1.0.0",
       "Microsoft.AspNetCore.OpenApi >= 9.0.9"
     ]
   },
@@ -105,7 +139,11 @@
       "frameworks": {
         "net9.0": {
           "targetAlias": "net9.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "C:\\Users\\user\\Desktop\\asp11\\EA_Ecommerce\\EA_Ecommerce.BLL\\EA_Ecommerce.BLL.csproj": {
+              "projectPath": "C:\\Users\\user\\Desktop\\asp11\\EA_Ecommerce\\EA_Ecommerce.BLL\\EA_Ecommerce.BLL.csproj"
+            }
+          }
         }
       },
       "warningProperties": {
