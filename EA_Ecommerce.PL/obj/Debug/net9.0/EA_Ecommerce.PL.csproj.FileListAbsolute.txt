@@ -169,3 +169,8 @@ C:\Users\user\Desktop\asp11\EA_Ecommerce\EA_Ecommerce.PL\obj\Debug\net9.0\ref\EA
 C:\Users\user\Desktop\asp11\EA_Ecommerce\EA_Ecommerce.PL\bin\Debug\net9.0\Mapster.dll
 C:\Users\user\Desktop\asp11\EA_Ecommerce\EA_Ecommerce.PL\bin\Debug\net9.0\Mapster.Core.dll
 C:\Users\user\Desktop\asp11\EA_Ecommerce\EA_Ecommerce.PL\bin\Debug\net9.0\Scalar.AspNetCore.dll
+C:\Users\user\Desktop\asp11\EA_Ecommerce\EA_Ecommerce.PL\bin\Debug\net9.0\Microsoft.AspNetCore.Cryptography.Internal.dll
+C:\Users\user\Desktop\asp11\EA_Ecommerce\EA_Ecommerce.PL\bin\Debug\net9.0\Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
+C:\Users\user\Desktop\asp11\EA_Ecommerce\EA_Ecommerce.PL\bin\Debug\net9.0\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
+C:\Users\user\Desktop\asp11\EA_Ecommerce\EA_Ecommerce.PL\bin\Debug\net9.0\Microsoft.Extensions.Identity.Core.dll
+C:\Users\user\Desktop\asp11\EA_Ecommerce\EA_Ecommerce.PL\bin\Debug\net9.0\Microsoft.Extensions.Identity.Stores.dll

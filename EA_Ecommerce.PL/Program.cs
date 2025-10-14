@@ -1,15 +1,18 @@
 using EA_Ecommerce.BLL.Services.Brand;
 using EA_Ecommerce.BLL.Services.Categories;
 using EA_Ecommerce.DAL.Data;
+using EA_Ecommerce.DAL.Models;
 using EA_Ecommerce.DAL.Repositories.Brands;
 using EA_Ecommerce.DAL.Repositories.Categories;
+using EA_Ecommerce.DAL.utils.SeedData;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Scalar.AspNetCore;
 namespace EA_Ecommerce.PL
 {
     public class Program
     {
-        public static void Main(string[] args)
+        public static async Task Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
 
@@ -20,7 +23,11 @@ namespace EA_Ecommerce.PL
             builder.Services.AddScoped<IBrandRepository, BrandRepository>();
             builder.Services.AddScoped<ICategoryService, CategoryService>();
             builder.Services.AddScoped<IBrandService, BrandService>();
+            builder.Services.AddScoped<ISeedData, SeedData>();
 
+
+            builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
+                .AddEntityFrameworkStores<ApplicationDbContext>();
 
 
 
@@ -39,6 +46,12 @@ namespace EA_Ecommerce.PL
                 app.MapOpenApi();
                 app.MapScalarApiReference();
             }
+
+            var scope = app.Services.CreateScope();
+            var objectOfSeddDtata = scope.ServiceProvider.GetRequiredService<ISeedData>();
+            await objectOfSeddDtata.DataSeedingAsync();
+            await objectOfSeddDtata.IdentityDataSeedingAsync();
+
 
             app.UseHttpsRedirection();
 
