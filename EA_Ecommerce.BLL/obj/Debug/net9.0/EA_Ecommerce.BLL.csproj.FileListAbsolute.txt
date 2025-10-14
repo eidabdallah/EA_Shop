@@ -1,0 +1,16 @@
+C:\Users\user\Desktop\asp11\EA_Ecommerce\EA_Ecommerce.BLL\bin\Debug\net9.0\EA_Ecommerce.BLL.deps.json
+C:\Users\user\Desktop\asp11\EA_Ecommerce\EA_Ecommerce.BLL\bin\Debug\net9.0\EA_Ecommerce.BLL.dll
+C:\Users\user\Desktop\asp11\EA_Ecommerce\EA_Ecommerce.BLL\bin\Debug\net9.0\EA_Ecommerce.BLL.pdb
+C:\Users\user\Desktop\asp11\EA_Ecommerce\EA_Ecommerce.BLL\bin\Debug\net9.0\EA_Ecommerce.DAL.dll
+C:\Users\user\Desktop\asp11\EA_Ecommerce\EA_Ecommerce.BLL\bin\Debug\net9.0\EA_Ecommerce.DAL.pdb
+C:\Users\user\Desktop\asp11\EA_Ecommerce\EA_Ecommerce.BLL\obj\Debug\net9.0\EA_Ecommerce.BLL.csproj.AssemblyReference.cache
+C:\Users\user\Desktop\asp11\EA_Ecommerce\EA_Ecommerce.BLL\obj\Debug\net9.0\EA_Ecommerce.BLL.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\user\Desktop\asp11\EA_Ecommerce\EA_Ecommerce.BLL\obj\Debug\net9.0\EA_Ecommerce.BLL.AssemblyInfoInputs.cache
+C:\Users\user\Desktop\asp11\EA_Ecommerce\EA_Ecommerce.BLL\obj\Debug\net9.0\EA_Ecommerce.BLL.AssemblyInfo.cs
+C:\Users\user\Desktop\asp11\EA_Ecommerce\EA_Ecommerce.BLL\obj\Debug\net9.0\EA_Ecommerce.BLL.csproj.CoreCompileInputs.cache
+C:\Users\user\Desktop\asp11\EA_Ecommerce\EA_Ecommerce.BLL\obj\Debug\net9.0\EA_Ecommerce.BLL.sourcelink.json
+C:\Users\user\Desktop\asp11\EA_Ecommerce\EA_Ecommerce.BLL\obj\Debug\net9.0\EA_Ecomm.52F732A7.Up2Date
+C:\Users\user\Desktop\asp11\EA_Ecommerce\EA_Ecommerce.BLL\obj\Debug\net9.0\EA_Ecommerce.BLL.dll
+C:\Users\user\Desktop\asp11\EA_Ecommerce\EA_Ecommerce.BLL\obj\Debug\net9.0\refint\EA_Ecommerce.BLL.dll
+C:\Users\user\Desktop\asp11\EA_Ecommerce\EA_Ecommerce.BLL\obj\Debug\net9.0\EA_Ecommerce.BLL.pdb
+C:\Users\user\Desktop\asp11\EA_Ecommerce\EA_Ecommerce.BLL\obj\Debug\net9.0\ref\EA_Ecommerce.BLL.dll

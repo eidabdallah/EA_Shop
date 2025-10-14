@@ -7,6 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Mapster" Version="7.4.0" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\EA_Ecommerce.DAL\EA_Ecommerce.DAL.csproj" />
   </ItemGroup>
 

@@ -1,0 +1,13 @@
+C:\Users\user\Desktop\asp11\EA_Ecommerce\EA_Ecommerce.DAL\bin\Debug\net9.0\EA_Ecommerce.DAL.deps.json
+C:\Users\user\Desktop\asp11\EA_Ecommerce\EA_Ecommerce.DAL\bin\Debug\net9.0\EA_Ecommerce.DAL.dll
+C:\Users\user\Desktop\asp11\EA_Ecommerce\EA_Ecommerce.DAL\bin\Debug\net9.0\EA_Ecommerce.DAL.pdb
+C:\Users\user\Desktop\asp11\EA_Ecommerce\EA_Ecommerce.DAL\obj\Debug\net9.0\EA_Ecommerce.DAL.csproj.AssemblyReference.cache
+C:\Users\user\Desktop\asp11\EA_Ecommerce\EA_Ecommerce.DAL\obj\Debug\net9.0\EA_Ecommerce.DAL.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\user\Desktop\asp11\EA_Ecommerce\EA_Ecommerce.DAL\obj\Debug\net9.0\EA_Ecommerce.DAL.AssemblyInfoInputs.cache
+C:\Users\user\Desktop\asp11\EA_Ecommerce\EA_Ecommerce.DAL\obj\Debug\net9.0\EA_Ecommerce.DAL.AssemblyInfo.cs
+C:\Users\user\Desktop\asp11\EA_Ecommerce\EA_Ecommerce.DAL\obj\Debug\net9.0\EA_Ecommerce.DAL.csproj.CoreCompileInputs.cache
+C:\Users\user\Desktop\asp11\EA_Ecommerce\EA_Ecommerce.DAL\obj\Debug\net9.0\EA_Ecommerce.DAL.sourcelink.json
+C:\Users\user\Desktop\asp11\EA_Ecommerce\EA_Ecommerce.DAL\obj\Debug\net9.0\EA_Ecommerce.DAL.dll
+C:\Users\user\Desktop\asp11\EA_Ecommerce\EA_Ecommerce.DAL\obj\Debug\net9.0\refint\EA_Ecommerce.DAL.dll
+C:\Users\user\Desktop\asp11\EA_Ecommerce\EA_Ecommerce.DAL\obj\Debug\net9.0\EA_Ecommerce.DAL.pdb
+C:\Users\user\Desktop\asp11\EA_Ecommerce\EA_Ecommerce.DAL\obj\Debug\net9.0\ref\EA_Ecommerce.DAL.dll

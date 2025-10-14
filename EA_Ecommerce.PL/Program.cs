@@ -1,4 +1,8 @@
-
+using EA_Ecommerce.BLL.Services.Categories;
+using EA_Ecommerce.DAL.Data;
+using EA_Ecommerce.DAL.Repositories.Categories;
+using Microsoft.EntityFrameworkCore;
+using Scalar.AspNetCore;
 namespace EA_Ecommerce.PL
 {
     public class Program
@@ -7,11 +11,21 @@ namespace EA_Ecommerce.PL
         {
             var builder = WebApplication.CreateBuilder(args);
 
+            builder.Services.AddDbContext<ApplicationDbContext>(options =>
+               options.UseSqlServer(builder.Configuration["ConnectionStrings:DefaultConnection"]));
+
+            builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
+
+
+            builder.Services.AddScoped<ICategoryService, CategoryService>();
+
+
             // Add services to the container.
 
             builder.Services.AddControllers();
             // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
             builder.Services.AddOpenApi();
+           
 
             var app = builder.Build();
 
@@ -19,6 +33,7 @@ namespace EA_Ecommerce.PL
             if (app.Environment.IsDevelopment())
             {
                 app.MapOpenApi();
+                app.MapScalarApiReference();
             }
 
             app.UseHttpsRedirection();
