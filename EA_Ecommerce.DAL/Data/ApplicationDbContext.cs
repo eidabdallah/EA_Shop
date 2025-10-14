@@ -12,5 +12,7 @@ namespace EA_Ecommerce.DAL.Data
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options){}
         public DbSet<Category> Categories { get; set; }
+        public DbSet<Brand> Brands { get; set; }
+
     }
 }

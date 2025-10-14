@@ -9,9 +9,9 @@ namespace EA_Ecommerce.PL.Controllers
     [ApiController]
     public class CategoriesController : ControllerBase
     {
-        private readonly ICategoryService categoryService;
+        private readonly IBrandService categoryService;
 
-        public CategoriesController(ICategoryService categoryService)
+        public CategoriesController(IBrandService categoryService)
         {
             this.categoryService = categoryService;
         }
