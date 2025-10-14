@@ -1,3 +1,4 @@
+using EA_Ecommerce.BLL.Services.Brand;
 using EA_Ecommerce.BLL.Services.Categories;
 using EA_Ecommerce.DAL.Data;
 using EA_Ecommerce.DAL.Repositories.Brands;
@@ -16,9 +17,10 @@ namespace EA_Ecommerce.PL
                options.UseSqlServer(builder.Configuration["ConnectionStrings:DefaultConnection"]));
 
             builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
+            builder.Services.AddScoped<IBrandRepository, BrandRepository>();
+            builder.Services.AddScoped<ICategoryService, CategoryService>();
             builder.Services.AddScoped<IBrandService, BrandService>();
 
-            builder.Services.AddScoped<IBrandRepository, BrandRepository>();
 
 
 

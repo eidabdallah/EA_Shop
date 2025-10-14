@@ -9,9 +9,9 @@ namespace EA_Ecommerce.PL.Controllers
     [ApiController]
     public class CategoriesController : ControllerBase
     {
-        private readonly IBrandService categoryService;
+        private readonly ICategoryService categoryService;
 
-        public CategoriesController(IBrandService categoryService)
+        public CategoriesController(ICategoryService categoryService)
         {
             this.categoryService = categoryService;
         }
@@ -19,31 +19,31 @@ namespace EA_Ecommerce.PL.Controllers
         [HttpGet]
         public IActionResult GetAllCategories()
         {
-            return Ok(categoryService.GetAllCategories());
+            return Ok(categoryService.GetAll());
         }
         [HttpGet("{id}")]
         public IActionResult GetById([FromRoute] int id)
         {
-            var category = categoryService.GetCategoryById(id);
+            var category = categoryService.GetById(id);
             if (category == null) return NotFound(new { message = "Category not found" });
             return Ok(category);
         }
         [HttpPost]
         public IActionResult CreateCategory([FromBody] CategoryRequestDTO request)
         {
-            int id = categoryService.CreateCategory(request);
+            int id = categoryService.Create(request);
             return CreatedAtAction(nameof(GetById), new { id = id } , new { message = "Category created successfully" }); // CreatedAtAction : 201 + Location header
         }
         [HttpPut("{id}")]
         public IActionResult UpdateCategory([FromRoute] int id, [FromBody] CategoryRequestDTO request)
         {
-            var Updated = categoryService.UpdateCategory(id, request);
+            var Updated = categoryService.Update(id, request);
             return Updated > 0 ? Ok(new {message = "category updated"}) : NotFound(new { message = "Category not found" });
         }
         [HttpDelete("{id}")]
         public IActionResult DeleteCategory([FromRoute] int id)
         {
-            var Deleted = categoryService.DeleteCategory(id);
+            var Deleted = categoryService.Delete(id);
             return Deleted > 0 ? Ok(new { message = "category deleted" }) : NotFound(new { message = "Category not found" });
         }
         [HttpPatch("ToggleStatus/{id}")]
