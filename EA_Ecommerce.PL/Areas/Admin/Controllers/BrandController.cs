@@ -1,14 +1,15 @@
 ﻿using EA_Ecommerce.BLL.Services.Brand;
-using EA_Ecommerce.BLL.Services.Categories;
 using EA_Ecommerce.DAL.DTO.Requests.Brand;
-using EA_Ecommerce.DAL.DTO.Requests.Category;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
-namespace EA_Ecommerce.PL.Controllers
+namespace EA_Ecommerce.PL.Areas.Admin.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/[area]/[controller]")]
     [ApiController]
+    [Area("Admin")]
+    [Authorize(Roles = "Admin,SuperAdmin")]
     public class BrandController : ControllerBase
     {
         private readonly IBrandService _brandService;
@@ -32,7 +33,7 @@ namespace EA_Ecommerce.PL.Controllers
         public IActionResult CreateCategory([FromBody] BrandRequestDTO request)
         {
             int id = _brandService.Create(request);
-            return CreatedAtAction(nameof(GetById), new { id = id }, new { message = "Category created successfully" }); // CreatedAtAction : 201 + Location header
+            return CreatedAtAction(nameof(GetById), new { id = id }, new { message = "Category created successfully" }); 
         }
         [HttpPut("{id}")]
         public IActionResult UpdateCategory([FromRoute] int id, [FromBody] BrandRequestDTO request)

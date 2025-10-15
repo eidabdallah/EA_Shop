@@ -1,8 +1,8 @@
 [
   {
-    "ContainingType": "EA_Ecommerce.PL.Controllers.BrandController",
+    "ContainingType": "EA_Ecommerce.PL.Areas.Admin.Controllers.BrandController",
     "Method": "GetAllBrand",
-    "RelativePath": "api/Brand",
+    "RelativePath": "api/Admin/Brand",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -10,9 +10,9 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "EA_Ecommerce.PL.Controllers.BrandController",
+    "ContainingType": "EA_Ecommerce.PL.Areas.Admin.Controllers.BrandController",
     "Method": "CreateCategory",
-    "RelativePath": "api/Brand",
+    "RelativePath": "api/Admin/Brand",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
@@ -26,9 +26,9 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "EA_Ecommerce.PL.Controllers.BrandController",
+    "ContainingType": "EA_Ecommerce.PL.Areas.Admin.Controllers.BrandController",
     "Method": "GetById",
-    "RelativePath": "api/Brand/{id}",
+    "RelativePath": "api/Admin/Brand/{id}",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -42,9 +42,9 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "EA_Ecommerce.PL.Controllers.BrandController",
+    "ContainingType": "EA_Ecommerce.PL.Areas.Admin.Controllers.BrandController",
     "Method": "UpdateCategory",
-    "RelativePath": "api/Brand/{id}",
+    "RelativePath": "api/Admin/Brand/{id}",
     "HttpMethod": "PUT",
     "IsController": true,
     "Order": 0,
@@ -63,9 +63,9 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "EA_Ecommerce.PL.Controllers.BrandController",
+    "ContainingType": "EA_Ecommerce.PL.Areas.Admin.Controllers.BrandController",
     "Method": "DeleteCategory",
-    "RelativePath": "api/Brand/{id}",
+    "RelativePath": "api/Admin/Brand/{id}",
     "HttpMethod": "DELETE",
     "IsController": true,
     "Order": 0,
@@ -79,9 +79,9 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "EA_Ecommerce.PL.Controllers.BrandController",
+    "ContainingType": "EA_Ecommerce.PL.Areas.Admin.Controllers.BrandController",
     "Method": "ToggleCategoryStatus",
-    "RelativePath": "api/Brand/ToggleStatus/{id}",
+    "RelativePath": "api/Admin/Brand/ToggleStatus/{id}",
     "HttpMethod": "PATCH",
     "IsController": true,
     "Order": 0,
@@ -188,6 +188,84 @@
       }
     ],
     "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EA_Ecommerce.PL.Areas.Customer.Controllers.BrandController",
+    "Method": "GetAllBrand",
+    "RelativePath": "api/Customer/Brand",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EA_Ecommerce.PL.Areas.Customer.Controllers.BrandController",
+    "Method": "GetById",
+    "RelativePath": "api/Customer/Brand/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EA_Ecommerce.PL.Areas.Identity.Controllers.AccountController",
+    "Method": "Login",
+    "RelativePath": "api/Identity/Account/login",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "loginRequest",
+        "Type": "EA_Ecommerce.DAL.DTO.Requests.Login.LoginRequestDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "EA_Ecommerce.DAL.DTO.Responses.User.UserResponseDTO",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "EA_Ecommerce.PL.Areas.Identity.Controllers.AccountController",
+    "Method": "Register",
+    "RelativePath": "api/Identity/Account/register",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "registerRequest",
+        "Type": "EA_Ecommerce.DAL.DTO.Requests.RegisterRequestDTO.RegisterRequestDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "EA_Ecommerce.DAL.DTO.Responses.User.UserResponseDTO",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
   },
   {
     "ContainingType": "EA_Ecommerce.PL.Controllers.WeatherForecastController",

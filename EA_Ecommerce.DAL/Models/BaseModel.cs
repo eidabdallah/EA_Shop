@@ -8,8 +8,8 @@ namespace EA_Ecommerce.DAL.Models
 {
     public enum Status
     {
-        Active,
-        Inactive,
+        Active = 1,
+        Inactive = 2,
     }
     public class BaseModel
     {

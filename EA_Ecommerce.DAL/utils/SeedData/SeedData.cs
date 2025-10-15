@@ -42,7 +42,7 @@ namespace EA_Ecommerce.DAL.utils.SeedData
                     new Brand { Name = "Nike" }
                     );
             }
-            _context.SaveChangesAsync();
+            await _context.SaveChangesAsync();
 
         }
 
@@ -53,7 +53,7 @@ namespace EA_Ecommerce.DAL.utils.SeedData
             {
                 await _roleManager.CreateAsync(new IdentityRole("Admin"));
                 await _roleManager.CreateAsync(new IdentityRole("SuperAdmin"));
-                await _roleManager.CreateAsync(new IdentityRole("User"));
+                await _roleManager.CreateAsync(new IdentityRole("Customer"));
             }
             // add user : 
             if (!await _userManager.Users.AnyAsync())
@@ -85,7 +85,7 @@ namespace EA_Ecommerce.DAL.utils.SeedData
 
                 await _userManager.AddToRoleAsync(user1, "SuperAdmin");
                 await _userManager.AddToRoleAsync(user2, "Admin");
-                await _userManager.AddToRoleAsync(user3, "User");
+                await _userManager.AddToRoleAsync(user3, "Customer");
 
                 await _context.SaveChangesAsync();
             }

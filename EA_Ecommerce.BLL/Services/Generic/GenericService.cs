@@ -39,16 +39,19 @@ namespace EA_Ecommerce.DAL.Repositories.Generic
             return _genericRepository.Delete(entity);
         }
 
-        public IEnumerable<TResponse> GetAll()
+        public IEnumerable<TResponse> GetAll(bool onlyActive = false)
         {
             var entites = _genericRepository.GetAll();
+            if (onlyActive)
+            {
+                entites = entites.Where(e => e.Status == Status.Active);
+            }
             return entites.Adapt<IEnumerable<TResponse>>();
         }
 
-        public TResponse? GetById(int id)
+        public TResponse? GetById(int id )
         {
             var entity = _genericRepository.GetById(id);
-
             return entity is null ? default : entity.Adapt<TResponse>();
         }
 
