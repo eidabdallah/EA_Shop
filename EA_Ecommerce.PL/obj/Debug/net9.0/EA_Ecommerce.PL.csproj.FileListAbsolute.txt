@@ -175,3 +175,6 @@ C:\Users\user\Desktop\asp11\EA_Ecommerce\EA_Ecommerce.PL\bin\Debug\net9.0\Micros
 C:\Users\user\Desktop\asp11\EA_Ecommerce\EA_Ecommerce.PL\bin\Debug\net9.0\Microsoft.Extensions.Identity.Core.dll
 C:\Users\user\Desktop\asp11\EA_Ecommerce\EA_Ecommerce.PL\bin\Debug\net9.0\Microsoft.Extensions.Identity.Stores.dll
 C:\Users\user\Desktop\asp11\EA_Ecommerce\EA_Ecommerce.PL\bin\Debug\net9.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Users\user\Desktop\asp11\EA_Ecommerce\EA_Ecommerce.PL\bin\Debug\net9.0\Microsoft.AspNetCore.Identity.UI.dll
+C:\Users\user\Desktop\asp11\EA_Ecommerce\EA_Ecommerce.PL\bin\Debug\net9.0\Microsoft.Extensions.FileProviders.Abstractions.dll
+C:\Users\user\Desktop\asp11\EA_Ecommerce\EA_Ecommerce.PL\bin\Debug\net9.0\Microsoft.Extensions.FileProviders.Embedded.dll

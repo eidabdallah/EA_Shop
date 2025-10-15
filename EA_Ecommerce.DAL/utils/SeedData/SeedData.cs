@@ -63,21 +63,26 @@ namespace EA_Ecommerce.DAL.utils.SeedData
                     FullName = "Eid Abdalla",
                     UserName = "eidAb",
                     PhoneNumber = "0505432540",
-                    Email = "eidabdallah971@gmail.com"
+                    Email = "eidabdallah971@gmail.com",
+                    EmailConfirmed = true
                 };
                 var user2 = new ApplicationUser()
                 {
                     FullName = "sami Abdalla",
                     UserName = "samiAb",
                     PhoneNumber = "0505432541",
-                    Email = "samiabdallah971@gmail.com"
+                    Email = "samiabdallah971@gmail.com",
+                    EmailConfirmed = true
+
                 };
                 var user3 = new ApplicationUser()
                 {
                     FullName = "Noor Abdalla",
                     UserName = "noorAb",
                     PhoneNumber = "0505432542",
-                    Email = "noorabdallah971@gmail.com"
+                    Email = "noorabdallah971@gmail.com",
+                    EmailConfirmed = true
+
                 };
                 await _userManager.CreateAsync(user1 , "Pass@1212");
                 await _userManager.CreateAsync(user2, "Pass@1213");

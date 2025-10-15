@@ -6,9 +6,11 @@ using EA_Ecommerce.DAL.Models;
 using EA_Ecommerce.DAL.Repositories.Brands;
 using EA_Ecommerce.DAL.Repositories.Categories;
 using EA_Ecommerce.DAL.utils.SeedData;
+using EA_Ecommerce.PL.utils;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Scalar.AspNetCore;
@@ -30,11 +32,13 @@ namespace EA_Ecommerce.PL
             builder.Services.AddScoped<IBrandService, BrandService>();
             builder.Services.AddScoped<ISeedData, SeedData>();
             builder.Services.AddScoped<IAuthenticationService, AuthenticationService>();
+            builder.Services.AddScoped<IEmailSender, EmailSetting>();
+
 
 
 
             builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
-                .AddEntityFrameworkStores<ApplicationDbContext>();
+                .AddEntityFrameworkStores<ApplicationDbContext>().AddDefaultTokenProviders();
 
 
 

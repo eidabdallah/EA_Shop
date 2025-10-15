@@ -3,6 +3,7 @@ using EA_Ecommerce.DAL.DTO.Requests.RegisterRequestDTO;
 using EA_Ecommerce.DAL.DTO.Responses.User;
 using EA_Ecommerce.DAL.Models;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using System;
@@ -19,11 +20,28 @@ namespace EA_Ecommerce.BLL.Services.Authentication
     {
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly IConfiguration _configuration;
+        private readonly IEmailSender _emailSender;
 
-        public AuthenticationService(UserManager<ApplicationUser> userManager , IConfiguration configuration)
+        public AuthenticationService(UserManager<ApplicationUser> userManager , IConfiguration configuration , IEmailSender emailSender)
         {
             _userManager = userManager;
             _configuration = configuration;
+            _emailSender = emailSender;
+        }
+        public async Task<string> ConfirmEmail(string token , string userId)
+        {
+            var user = await _userManager.FindByIdAsync(userId);
+            if (user is null)
+            {
+                throw new Exception("user not found");
+            }
+            var result = await _userManager.ConfirmEmailAsync(user, token);
+            if (result.Succeeded)
+            {
+                return "Email Confirmed Successfully";
+            }   
+            return "Error while confirming your email";
+            
         }
         public async Task<UserResponseDTO> RegisterAsync(RegisterRequestDTO RegisterRequest)
         {
@@ -37,6 +55,11 @@ namespace EA_Ecommerce.BLL.Services.Authentication
             var result =  await _userManager.CreateAsync(user, RegisterRequest.Password);
             if (result.Succeeded)
             {
+                var token = await _userManager.GenerateEmailConfirmationTokenAsync(user);
+                var escapedToken = Uri.EscapeDataString(token);
+                var emailUrl = $"https://localhost:7169/api/Identity/Account/ConfirmEmail?token={escapedToken}&userId={user.Id}";
+                await _emailSender.SendEmailAsync(RegisterRequest.Email, "Confirm your email",
+                    $"<h1>hello ya {user.UserName} ❤️</h1>" + $"<a href='{emailUrl}'>Confirm</a>");
                 return new UserResponseDTO()
                 {
                     Token = RegisterRequest.Email
@@ -51,6 +74,10 @@ namespace EA_Ecommerce.BLL.Services.Authentication
             if (user is null)
             {
                 throw new Exception("Invalid Email or Password");
+            }
+            if(!await _userManager.IsEmailConfirmedAsync(user))
+            {
+                throw new Exception("Please Confirm your Email");
             }
             var isPasswordValid = await _userManager.CheckPasswordAsync(user, loginRequest.Password);
             if(!isPasswordValid)
@@ -89,10 +116,8 @@ namespace EA_Ecommerce.BLL.Services.Authentication
                 signingCredentials: credentials
                 );
             return new JwtSecurityTokenHandler().WriteToken(token);
-
-
-
         }
+
 
 
     }

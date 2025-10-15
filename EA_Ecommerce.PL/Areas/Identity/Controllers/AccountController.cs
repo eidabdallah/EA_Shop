@@ -32,5 +32,12 @@ namespace EA_Ecommerce.PL.Areas.Identity.Controllers
             var result = await _authenticationService.LoginAsync(loginRequest);
             return Ok(result);
         }
+
+        [HttpGet("ConfirmEmail")]
+        public async Task<ActionResult<string>> ConfirmEmail([FromQuery] string token , [FromQuery] string userId)
+        {
+            var result = await _authenticationService.ConfirmEmail(token , userId);
+            return Ok(result);
+        }
     }
 }

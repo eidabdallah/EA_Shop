@@ -13,6 +13,7 @@ namespace EA_Ecommerce.BLL.Services.Authentication
     {
         Task<UserResponseDTO> LoginAsync(LoginRequestDTO loginRequest);
         Task<UserResponseDTO> RegisterAsync(RegisterRequestDTO RegisterRequest);
+        Task<string> ConfirmEmail(string token, string userId);
 
     }
 }
