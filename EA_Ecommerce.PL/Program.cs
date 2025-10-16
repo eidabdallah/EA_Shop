@@ -37,8 +37,18 @@ namespace EA_Ecommerce.PL
 
 
 
-            builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
-                .AddEntityFrameworkStores<ApplicationDbContext>().AddDefaultTokenProviders();
+            builder.Services.AddIdentity<ApplicationUser, IdentityRole>(option =>
+            {
+                // validation for password
+                option.Password.RequiredLength = 8;
+                option.Password.RequireNonAlphanumeric = false;
+                option.Password.RequireDigit = true;
+                option.Password.RequireLowercase = true;
+                option.Password.RequireUppercase = true;
+
+                // validation For email
+                option.User.RequireUniqueEmail = true;
+            }).AddEntityFrameworkStores<ApplicationDbContext>().AddDefaultTokenProviders();
 
 
 

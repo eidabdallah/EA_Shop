@@ -1,8 +1,12 @@
-﻿using EA_Ecommerce.DAL.DTO.Requests.Login;
+﻿using Azure.Core;
+using EA_Ecommerce.DAL.DTO.Requests.ForgetPassword;
+using EA_Ecommerce.DAL.DTO.Requests.Login;
 using EA_Ecommerce.DAL.DTO.Requests.RegisterRequestDTO;
+using EA_Ecommerce.DAL.DTO.Requests.ResetPassword;
 using EA_Ecommerce.DAL.DTO.Responses.User;
 using EA_Ecommerce.DAL.Models;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.Data;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
@@ -118,7 +122,55 @@ namespace EA_Ecommerce.BLL.Services.Authentication
             return new JwtSecurityTokenHandler().WriteToken(token);
         }
 
+        public async Task<bool> ForgotPassword(ForgotPasswordRequestDTO request)
+        {
+            var user = await _userManager.FindByEmailAsync(request.Email);
+            if (user == null)
+            {
+                throw new Exception("User not found");
+            }
 
+            var random = new Random();
+            var code = random.Next(1000, 9999).ToString();
 
+            user.CodeResetPassword = code;
+            user.PasswordResetCodeExpiry = DateTime.UtcNow.AddMinutes(15);
+
+            await _userManager.UpdateAsync(user);
+
+            await _emailSender.SendEmailAsync(
+                request.Email,
+                "Reset Password",
+                $"<p>Your reset code is: <strong>{code}</strong></p>"
+            );
+
+            return true;
+        }
+        public async Task<bool> ResetPassword(ResetPasswordRequestDTO request)
+        {
+            var user = await _userManager.FindByEmailAsync(request.Email);
+            if (user == null)
+            {
+                throw new Exception("User not found");
+            }
+
+            if (user.CodeResetPassword != request.Code)return false;
+
+            if (user.PasswordResetCodeExpiry < DateTime.UtcNow)return false;
+
+            var token = await _userManager.GeneratePasswordResetTokenAsync(user);
+            var result = await _userManager.ResetPasswordAsync(user, token, request.NewPassword);
+
+            if (result.Succeeded)
+            {
+                await _emailSender.SendEmailAsync(
+                    request.Email,
+                    "Change Password",
+                    "<h1>Your password has been changed successfully.</h1>"
+                );
+            }
+
+            return true;
+        }
     }
 }

@@ -1,8 +1,11 @@
 ﻿using EA_Ecommerce.BLL.Services.Authentication;
+using EA_Ecommerce.DAL.DTO.Requests.ForgetPassword;
 using EA_Ecommerce.DAL.DTO.Requests.Login;
 using EA_Ecommerce.DAL.DTO.Requests.RegisterRequestDTO;
+using EA_Ecommerce.DAL.DTO.Requests.ResetPassword;
 using EA_Ecommerce.DAL.DTO.Responses.User;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity.Data;
 using Microsoft.AspNetCore.Mvc;
 
 namespace EA_Ecommerce.PL.Areas.Identity.Controllers
@@ -39,5 +42,18 @@ namespace EA_Ecommerce.PL.Areas.Identity.Controllers
             var result = await _authenticationService.ConfirmEmail(token , userId);
             return Ok(result);
         }
+        [HttpPost("forgot-password")]
+        public async Task<ActionResult<string>> ForgotPassword([FromBody] ForgotPasswordRequestDTO request)
+        {
+            var result = await _authenticationService.ForgotPassword(request);
+            return Ok(result);
+        }
+        [HttpPatch("reset-password")]
+        public async Task<ActionResult<string>> ResetPassword([FromBody] ResetPasswordRequestDTO request)
+        {
+            var result = await _authenticationService.ResetPassword(request);
+            return Ok(result);
+        }
+
     }
 }
