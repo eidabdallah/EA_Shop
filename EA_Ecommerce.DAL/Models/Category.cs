@@ -9,6 +9,8 @@ namespace EA_Ecommerce.DAL.Models
     public class Category : BaseModel
     {
         public string Name { get; set; }
+        public string MainImage { get; set; }
+
         public List<Product> products { get; set; } = new List<Product>();
     }
 }
