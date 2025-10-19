@@ -37,14 +37,14 @@ namespace EA_Ecommerce.BLL.Services.Products
         {
             var entity = request.Adapt<Product>();
             entity.CreatedAt = DateTime.UtcNow;
-            var CheckCategory = _categoryRepository.GetById(request.CategoryId);
+            var CheckCategory = await _categoryRepository.GetByIdAsync(request.CategoryId);
             if (CheckCategory == null)
             {
                 throw new Exception("Category Not Found");
             }
             if (request.BrandId != null)
             {
-                var CheckBrand = _brandRepository.GetById(request.BrandId.Value);
+                var CheckBrand = await _brandRepository.GetByIdAsync(request.BrandId.Value);
                 if (CheckBrand == null)
                 {
                     throw new Exception("Brand Not Found");
@@ -56,7 +56,7 @@ namespace EA_Ecommerce.BLL.Services.Products
                 var imagePath = await _fileService.UploadAsync(request.MainImage);
                 entity.MainImage = imagePath;
             }
-            return _productRepository.Create(entity);
+            return await _productRepository.CreateAsync(entity);
         }
     }
 }

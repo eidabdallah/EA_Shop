@@ -19,12 +19,12 @@ namespace EA_Ecommerce.PL.Areas.Customer.Controllers
         [HttpGet]
         public IActionResult GetAllBrand()
         {
-            return Ok(_brandService.GetAll(true));
+            return Ok(_brandService.GetAllAsync(true));
         }
         [HttpGet("{id}")]
         public IActionResult GetById([FromRoute] int id)
         {
-            var category = _brandService.GetById(id);
+            var category = _brandService.GetByIdAsync(id);
             if (category == null) return NotFound(new { message = "Category not found" });
             return Ok(category);
         }

@@ -1,10 +1,7 @@
 ﻿using EA_Ecommerce.DAL.Data;
 using EA_Ecommerce.DAL.Models;
 using Microsoft.EntityFrameworkCore;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace EA_Ecommerce.DAL.Repositories.Generic
@@ -17,30 +14,36 @@ namespace EA_Ecommerce.DAL.Repositories.Generic
         {
             _context = context;
         }
-        public int Create(T entity)
+
+        public async Task<int> CreateAsync(T entity)
         {
-            _context.Set<T>().Add(entity);
-            return _context.SaveChanges(); // saveChanges returns number of affected rows
+            await _context.Set<T>().AddAsync(entity);
+            return await _context.SaveChangesAsync();
         }
-        public int Delete(T entity)
+
+        public async Task<int> DeleteAsync(T entity)
         {
             _context.Set<T>().Remove(entity);
-            return _context.SaveChanges();
+            return await _context.SaveChangesAsync();
         }
 
-        public IEnumerable<T> GetAll(bool withTracking = false)
+        public async Task<IEnumerable<T>> GetAllAsync(bool withTracking = false)
         {
             if (withTracking)
-                return _context.Set<T>().ToList();
-            return _context.Set<T>().AsNoTracking().ToList();
+                return await _context.Set<T>().ToListAsync();
+
+            return await _context.Set<T>().AsNoTracking().ToListAsync();
         }
 
-        public T? GetById(int id) => _context.Set<T>().Find(id);
-        
-        public int Update(T entity)
+        public async Task<T?> GetByIdAsync(int id)
         {
-           _context.Set<T>().Update(entity);
-            return _context.SaveChanges();
+            return await _context.Set<T>().FindAsync(id);
+        }
+
+        public async Task<int> UpdateAsync(T entity)
+        {
+            _context.Set<T>().Update(entity);
+            return await _context.SaveChangesAsync();
         }
     }
 }

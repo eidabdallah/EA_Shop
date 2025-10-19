@@ -11,7 +11,7 @@
   },
   {
     "ContainingType": "EA_Ecommerce.PL.Areas.Admin.Controllers.BrandController",
-    "Method": "CreateCategory",
+    "Method": "Create",
     "RelativePath": "api/Admin/Brand",
     "HttpMethod": "POST",
     "IsController": true,
@@ -43,7 +43,7 @@
   },
   {
     "ContainingType": "EA_Ecommerce.PL.Areas.Admin.Controllers.BrandController",
-    "Method": "UpdateCategory",
+    "Method": "Update",
     "RelativePath": "api/Admin/Brand/{id}",
     "HttpMethod": "PUT",
     "IsController": true,
@@ -64,7 +64,7 @@
   },
   {
     "ContainingType": "EA_Ecommerce.PL.Areas.Admin.Controllers.BrandController",
-    "Method": "DeleteCategory",
+    "Method": "Delete",
     "RelativePath": "api/Admin/Brand/{id}",
     "HttpMethod": "DELETE",
     "IsController": true,
@@ -80,7 +80,7 @@
   },
   {
     "ContainingType": "EA_Ecommerce.PL.Areas.Admin.Controllers.BrandController",
-    "Method": "ToggleCategoryStatus",
+    "Method": "ToggleStatus",
     "RelativePath": "api/Admin/Brand/ToggleStatus/{id}",
     "HttpMethod": "PATCH",
     "IsController": true,
@@ -175,7 +175,7 @@
   },
   {
     "ContainingType": "EA_Ecommerce.PL.Areas.Admin.Controllers.CategoryController",
-    "Method": "ToggleCategoryStatus",
+    "Method": "ToggleStatus",
     "RelativePath": "api/Admin/Category/ToggleStatus/{id}",
     "HttpMethod": "PATCH",
     "IsController": true,

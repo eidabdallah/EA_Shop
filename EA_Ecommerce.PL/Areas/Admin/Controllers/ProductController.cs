@@ -27,7 +27,7 @@ namespace EA_Ecommerce.PL.Areas.Admin.Controllers
         [HttpGet("")]
         public IActionResult GetAllCategories()
         {
-            return Ok(_productService.GetAll());
+            return Ok(_productService.GetAllAsync());
         }
     }
 }

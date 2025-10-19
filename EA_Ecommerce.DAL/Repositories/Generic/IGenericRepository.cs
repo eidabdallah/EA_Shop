@@ -9,10 +9,10 @@ namespace EA_Ecommerce.DAL.Repositories.Generic
 {
     public interface IGenericRepository<T>  where T : BaseModel
     {
-        int Create(T entity);
-        IEnumerable<T> GetAll(bool withTracking = false);
-        T? GetById(int id);
-        int Update(T entity);
-        int Delete(T entity);
+        Task<int> CreateAsync(T entity);
+        Task<IEnumerable<T>> GetAllAsync(bool withTracking = false);
+        Task<T?> GetByIdAsync(int id);
+        Task<int> UpdateAsync(T entity);
+        Task<int> DeleteAsync(T entity);
     }
 }

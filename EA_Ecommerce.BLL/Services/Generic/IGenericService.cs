@@ -9,13 +9,14 @@ using System.Threading.Tasks;
 
 namespace EA_Ecommerce.DAL.Repositories.Generic
 {
-    public interface IGenericService<TRequest , TResponse , TEntity>
+    public interface IGenericService<TRequest, TResponse, TEntity>
     {
-        int Create(TRequest request);
-        IEnumerable<TResponse> GetAll(bool onlyActive = false);
-        TResponse? GetById(int id);
-        int Update(int id, TRequest request);
-        int Delete(int id);
-        bool ToggleStatus(int id);
+        Task<int> CreateAsync(TRequest request);
+        Task<int> DeleteAsync(int id);
+        Task<IEnumerable<TResponse>> GetAllAsync(bool onlyActive = false);
+        Task<TResponse?> GetByIdAsync(int id);
+        Task<bool> ToggleStatusAsync(int id);
+        Task<int> UpdateAsync(int id, TRequest request);
     }
+
 }

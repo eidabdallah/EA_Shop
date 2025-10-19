@@ -18,40 +18,48 @@ namespace EA_Ecommerce.PL.Areas.Admin.Controllers
             _brandService = brandService;
         }
         [HttpGet]
-        public IActionResult GetAllBrand()
+        public async Task<IActionResult> GetAllBrand()
         {
-            return Ok(_brandService.GetAll());
+            var brands = await _brandService.GetAllAsync();
+            return Ok(brands);
         }
+
         [HttpGet("{id}")]
-        public IActionResult GetById([FromRoute] int id)
+        public async Task<IActionResult> GetById([FromRoute] int id)
         {
-            var category = _brandService.GetById(id);
-            if (category == null) return NotFound(new { message = "Category not found" });
-            return Ok(category);
+            var brand = await _brandService.GetByIdAsync(id);
+            if (brand == null)
+                return NotFound(new { message = "Brand not found" });
+            return Ok(brand);
         }
+
         [HttpPost]
-        public IActionResult CreateCategory([FromBody] BrandRequestDTO request)
+        public async Task<IActionResult> Create([FromBody] BrandRequestDTO request)
         {
-            int id = _brandService.Create(request);
-            return CreatedAtAction(nameof(GetById), new { id = id }, new { message = "Category created successfully" }); 
+            int id = await _brandService.CreateWithImage(request);
+            return CreatedAtAction(nameof(GetById), new { id = id }, new { message = "Brand created successfully" });
         }
+
         [HttpPut("{id}")]
-        public IActionResult UpdateCategory([FromRoute] int id, [FromBody] BrandRequestDTO request)
+        public async Task<IActionResult> Update([FromRoute] int id, [FromBody] BrandRequestDTO request)
         {
-            var Updated = _brandService.Update(id, request);
-            return Updated > 0 ? Ok(new { message = "category updated" }) : NotFound(new { message = "Category not found" });
+            var updated = await _brandService.UpdateAsync(id, request);
+            return updated > 0 ? Ok(new { message = "Brand updated" }) : NotFound(new { message = "Brand not found" });
         }
+
         [HttpDelete("{id}")]
-        public IActionResult DeleteCategory([FromRoute] int id)
+        public async Task<IActionResult> Delete([FromRoute] int id)
         {
-            var Deleted = _brandService.Delete(id);
-            return Deleted > 0 ? Ok(new { message = "category deleted" }) : NotFound(new { message = "Category not found" });
+            var deleted = await _brandService.DeleteAsync(id);
+            return deleted > 0 ? Ok(new { message = "Brand deleted" }) : NotFound(new { message = "Brand not found" });
         }
+
         [HttpPatch("ToggleStatus/{id}")]
-        public IActionResult ToggleCategoryStatus([FromRoute] int id)
+        public async Task<IActionResult> ToggleStatus([FromRoute] int id)
         {
-            var toggled = _brandService.ToggleStatus(id);
-            return toggled == true ? Ok(new { message = "category status toggled" }) : NotFound(new { message = "Category not found" });
+            var toggled = await _brandService.ToggleStatusAsync(id);
+            return toggled ? Ok(new { message = "Brand status toggled" }) : NotFound(new { message = "Brand not found" });
         }
+
     }
 }

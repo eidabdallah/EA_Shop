@@ -21,12 +21,12 @@ namespace EA_Ecommerce.PL.Areas.Customer.Controllers
         [HttpGet]
         public IActionResult GetAllCategories()
         {
-            return Ok(categoryService.GetAll(true));
+            return Ok(categoryService.GetAllAsync(true));
         }
         [HttpGet("{id}")]
         public IActionResult GetById([FromRoute] int id)
         {
-            var category = categoryService.GetById(id);
+            var category = categoryService.GetByIdAsync(id);
             if (category == null) return NotFound(new { message = "Category not found" });
             return Ok(category);
         }

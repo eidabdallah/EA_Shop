@@ -12,48 +12,54 @@ namespace EA_Ecommerce.PL.Areas.Admin.Controllers
     [Authorize(Roles = "Admin,SuperAdmin")]
     public class CategoryController : ControllerBase
     {
-        private readonly ICategoryService categoryService;
+        private readonly ICategoryService _categoryService;
 
         public CategoryController(ICategoryService categoryService)
         {
-            this.categoryService = categoryService;
+            _categoryService = categoryService;
         }
 
         [HttpGet]
-        public IActionResult GetAllCategories()
+        public async Task<IActionResult> GetAllCategories()
         {
-            return Ok(categoryService.GetAll());
+            var categories = await _categoryService.GetAllAsync();
+            return Ok(categories);
         }
+
         [HttpGet("{id}")]
-        public IActionResult GetById([FromRoute] int id)
+        public async Task<IActionResult> GetById([FromRoute] int id)
         {
-            var category = categoryService.GetById(id);
+            var category = await _categoryService.GetByIdAsync(id);
             if (category == null) return NotFound(new { message = "Category not found" });
             return Ok(category);
         }
+
         [HttpPost]
-        public IActionResult CreateCategory([FromBody] CategoryRequestDTO request)
+        public async Task<IActionResult> CreateCategory([FromBody] CategoryRequestDTO request)
         {
-            int id = categoryService.Create(request);
-            return CreatedAtAction(nameof(GetById), new { id = id }, new { message = "Category created successfully" }); // CreatedAtAction : 201 + Location header
+            int id = await _categoryService.CreateWithImage(request);
+            return CreatedAtAction(nameof(GetById), new { id = id }, new { message = "Category created successfully" });
         }
+
         [HttpPut("{id}")]
-        public IActionResult UpdateCategory([FromRoute] int id, [FromBody] CategoryRequestDTO request)
+        public async Task<IActionResult> UpdateCategory([FromRoute] int id, [FromBody] CategoryRequestDTO request)
         {
-            var Updated = categoryService.Update(id, request);
-            return Updated > 0 ? Ok(new { message = "category updated" }) : NotFound(new { message = "Category not found" });
+            var updated = await _categoryService.UpdateAsync(id, request);
+            return updated > 0 ? Ok(new { message = "Category updated" }) : NotFound(new { message = "Category not found" });
         }
+
         [HttpDelete("{id}")]
-        public IActionResult DeleteCategory([FromRoute] int id)
+        public async Task<IActionResult> DeleteCategory([FromRoute] int id)
         {
-            var Deleted = categoryService.Delete(id);
-            return Deleted > 0 ? Ok(new { message = "category deleted" }) : NotFound(new { message = "Category not found" });
+            var deleted = await _categoryService.DeleteAsync(id);
+            return deleted > 0 ? Ok(new { message = "Category deleted" }) : NotFound(new { message = "Category not found" });
         }
+
         [HttpPatch("ToggleStatus/{id}")]
-        public IActionResult ToggleCategoryStatus([FromRoute] int id)
+        public async Task<IActionResult> ToggleStatus([FromRoute] int id)
         {
-            var toggled = categoryService.ToggleStatus(id);
-            return toggled == true ? Ok(new { message = "category status toggled" }) : NotFound(new { message = "Category not found" });
+            var toggled = await _categoryService.ToggleStatusAsync(id);
+            return toggled ? Ok(new { message = "Category status toggled" }) : NotFound(new { message = "Category not found" });
         }
     }
 }
