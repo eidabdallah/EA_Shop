@@ -1,3 +1,5 @@
+using CloudinaryDotNet;
+using EA_Ecommerce.BLL.Configurations;
 using EA_Ecommerce.BLL.Services.Authentication;
 using EA_Ecommerce.BLL.Services.Brand;
 using EA_Ecommerce.BLL.Services.Categories;
@@ -15,6 +17,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using Scalar.AspNetCore;
 using System.Text;
@@ -41,7 +44,13 @@ namespace EA_Ecommerce.PL
             builder.Services.AddScoped<IFileService, FileService>();
 
 
-
+            builder.Services.Configure<CloudinarySettings>(builder.Configuration.GetSection("Cloudinary"));
+            builder.Services.AddSingleton<Cloudinary>(sp =>
+            {
+                var s = sp.GetRequiredService<IOptions<CloudinarySettings>>().Value;
+                var account = new Account(s.CloudName, s.ApiKey, s.ApiSecret);
+                return new Cloudinary(account);
+            });
 
 
             builder.Services.AddIdentity<ApplicationUser, IdentityRole>(option =>
@@ -93,9 +102,8 @@ namespace EA_Ecommerce.PL
 
             var scope = app.Services.CreateScope();
             var objectOfSeddDtata = scope.ServiceProvider.GetRequiredService<ISeedData>();
-            await objectOfSeddDtata.DataSeedingAsync();
             await objectOfSeddDtata.IdentityDataSeedingAsync();
-
+            
 
             app.UseHttpsRedirection();
 

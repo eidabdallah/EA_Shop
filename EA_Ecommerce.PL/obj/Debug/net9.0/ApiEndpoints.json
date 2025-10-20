@@ -18,9 +18,14 @@
     "Order": 0,
     "Parameters": [
       {
-        "Name": "request",
-        "Type": "EA_Ecommerce.DAL.DTO.Requests.Brand.BrandRequestDTO",
-        "IsRequired": true
+        "Name": "Name",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "MainImage",
+        "Type": "Microsoft.AspNetCore.Http.IFormFile",
+        "IsRequired": false
       }
     ],
     "ReturnTypes": []
@@ -113,9 +118,14 @@
     "Order": 0,
     "Parameters": [
       {
-        "Name": "request",
-        "Type": "EA_Ecommerce.DAL.DTO.Requests.Category.CategoryRequestDTO",
-        "IsRequired": true
+        "Name": "Name",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "MainImage",
+        "Type": "Microsoft.AspNetCore.Http.IFormFile",
+        "IsRequired": false
       }
     ],
     "ReturnTypes": []

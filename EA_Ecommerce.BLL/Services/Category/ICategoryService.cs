@@ -11,7 +11,5 @@ using System.Threading.Tasks;
 
 namespace EA_Ecommerce.BLL.Services.Categories
 {
-    public interface ICategoryService : IGenericService<CategoryRequestDTO,CategoryResponseDTO,Category> {
-        Task<int> CreateWithImage(CategoryRequestDTO request);
-    }
+    public interface ICategoryService : IGenericService<CategoryRequestDTO,CategoryResponseDTO,Category> {}
 }

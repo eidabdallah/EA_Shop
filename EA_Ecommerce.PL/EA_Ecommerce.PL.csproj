@@ -24,8 +24,4 @@
     <Folder Include="wwwroot\images\" />
   </ItemGroup>
 
-  <ItemGroup>
-    <None Include="wwwroot\images\58689616-bfd3-460f-b8e0-bbd89e369557.jpg" />
-  </ItemGroup>
-
 </Project>

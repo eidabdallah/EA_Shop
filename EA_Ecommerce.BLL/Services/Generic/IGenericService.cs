@@ -11,7 +11,7 @@ namespace EA_Ecommerce.DAL.Repositories.Generic
 {
     public interface IGenericService<TRequest, TResponse, TEntity>
     {
-        Task<int> CreateAsync(TRequest request);
+        Task<int> CreateAsync(TRequest request , bool WithImage = true, string? fileName = null);
         Task<int> DeleteAsync(int id);
         Task<IEnumerable<TResponse>> GetAllAsync(bool onlyActive = false);
         Task<TResponse?> GetByIdAsync(int id);

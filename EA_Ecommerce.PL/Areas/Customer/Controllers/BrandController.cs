@@ -17,16 +17,19 @@ namespace EA_Ecommerce.PL.Areas.Customer.Controllers
             _brandService = brandService;
         }
         [HttpGet]
-        public IActionResult GetAllBrand()
+        public async Task<IActionResult> GetAllBrand()
         {
-            return Ok(_brandService.GetAllAsync(true));
+            var brands = await _brandService.GetAllAsync();
+            return Ok(brands);
         }
+
         [HttpGet("{id}")]
-        public IActionResult GetById([FromRoute] int id)
+        public async Task<IActionResult> GetById([FromRoute] int id)
         {
-            var category = _brandService.GetByIdAsync(id);
-            if (category == null) return NotFound(new { message = "Category not found" });
-            return Ok(category);
+            var brand = await _brandService.GetByIdAsync(id);
+            if (brand == null)
+                return NotFound(new { message = "Brand not found" });
+            return Ok(brand);
         }
     }
 }

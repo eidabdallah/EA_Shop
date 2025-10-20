@@ -12,9 +12,5 @@ using System.Threading.Tasks;
 
 namespace EA_Ecommerce.BLL.Services.Brand
 {
-    public interface IBrandService : IGenericService<BrandRequestDTO , BrandResponseDTO , DAL.Models.Brand>
-    {
-        Task<int> CreateWithImage(BrandRequestDTO request);
-
-    }
+    public interface IBrandService : IGenericService<BrandRequestDTO , BrandResponseDTO , DAL.Models.Brand>{}
 }

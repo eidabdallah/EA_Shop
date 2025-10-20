@@ -9,6 +9,7 @@ namespace EA_Ecommerce.BLL.Services.Files
 {
     public interface IFileService
     {
-        Task<string> UploadAsync(IFormFile file);
+        Task<(string Url, string PublicId)> UploadAsync(IFormFile file, string? folderName = null);
+        Task<bool> DeleteAsync(string publicId);
     }
 }

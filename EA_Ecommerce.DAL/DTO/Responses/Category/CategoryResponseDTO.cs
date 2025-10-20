@@ -11,9 +11,9 @@ namespace EA_Ecommerce.DAL.DTO.Responses.Category
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        [JsonIgnore]
+        //[JsonIgnore]
         public string MainImage { get; set; }
-        public string MainImageUrl => $"https://localhost:7169/images/{MainImage}";
+        //public string MainImageUrl => $"https://localhost:7169/images/{MainImage}";
 
     }
 }

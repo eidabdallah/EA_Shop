@@ -22,7 +22,7 @@ namespace EA_Ecommerce.DAL.utils.SeedData
             _roleManager = roleManager;
             _userManager = userManager;
         }
-        public async Task DataSeedingAsync()
+        /*public async Task DataSeedingAsync()
         {
             if ((await _context.Database.GetPendingMigrationsAsync()).Any())
             {
@@ -44,7 +44,7 @@ namespace EA_Ecommerce.DAL.utils.SeedData
             }
             await _context.SaveChangesAsync();
 
-        }
+        }*/
 
         public async Task IdentityDataSeedingAsync()
         {

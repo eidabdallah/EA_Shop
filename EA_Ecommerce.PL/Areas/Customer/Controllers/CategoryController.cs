@@ -11,22 +11,23 @@ namespace EA_Ecommerce.PL.Areas.Customer.Controllers
     [Authorize(Roles = "Customer")]
     public class CategoryController : ControllerBase
     {
-        private readonly ICategoryService categoryService;
+        private readonly ICategoryService _categoryService;
 
         public CategoryController(ICategoryService categoryService)
         {
-            this.categoryService = categoryService;
+            _categoryService = categoryService;
+        }
+        [HttpGet("")]
+        public async Task<IActionResult> GetAllCategories()
+        {
+            var categories = await _categoryService.GetAllAsync();
+            return Ok(categories);
         }
 
-        [HttpGet]
-        public IActionResult GetAllCategories()
-        {
-            return Ok(categoryService.GetAllAsync(true));
-        }
         [HttpGet("{id}")]
-        public IActionResult GetById([FromRoute] int id)
+        public async Task<IActionResult> GetById([FromRoute] int id)
         {
-            var category = categoryService.GetByIdAsync(id);
+            var category = await _categoryService.GetByIdAsync(id);
             if (category == null) return NotFound(new { message = "Category not found" });
             return Ok(category);
         }

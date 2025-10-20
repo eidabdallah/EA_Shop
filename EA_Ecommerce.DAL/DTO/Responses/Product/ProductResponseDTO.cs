@@ -17,9 +17,9 @@ namespace EA_Ecommerce.DAL.DTO.Responses.Product
         public decimal Discount { get; set; }
         public int Quantity { get; set; }
         public double Rate { get; set; }
-        [JsonIgnore]
+        //[JsonIgnore]
         public string MainImage { get; set; }
-        public string MainImageUrl => $"https://localhost:7169/images/{MainImage}";
+        //public string MainImageUrl => $"https://localhost:7169/images/{MainImage}";
         public int CategoryId { get; set; }
         public int? BrandId { get; set; }
     }

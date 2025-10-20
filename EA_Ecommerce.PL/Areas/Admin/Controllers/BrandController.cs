@@ -34,9 +34,9 @@ namespace EA_Ecommerce.PL.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create([FromBody] BrandRequestDTO request)
+        public async Task<IActionResult> Create([FromForm] BrandRequestDTO request)
         {
-            int id = await _brandService.CreateWithImage(request);
+            int id = await _brandService.CreateAsync(request , true , "Brand");
             return CreatedAtAction(nameof(GetById), new { id = id }, new { message = "Brand created successfully" });
         }
 

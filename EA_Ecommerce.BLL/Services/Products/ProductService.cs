@@ -20,43 +20,23 @@ namespace EA_Ecommerce.BLL.Services.Products
 {
     public class ProductService : GenericService<ProductRequestDTO, ProductResponseDTO, Product>, IProductService
     {
-        private readonly IProductRepository _productRepository;
-        private readonly IFileService _fileService;
         private readonly ICategoryRepository _categoryRepository;
         private readonly IBrandRepository _brandRepository;
-
         public ProductService(IProductRepository productRepository , IFileService fileService 
-            , ICategoryRepository categoryRepository , IBrandRepository brandRepository) : base(productRepository) {
-            _productRepository = productRepository;
-            _fileService = fileService;
-            _categoryRepository = categoryRepository;
-            _brandRepository = brandRepository;
+            , ICategoryRepository categoryRepository , IBrandRepository brandRepository) : base(productRepository , fileService) {
+           _categoryRepository = categoryRepository;
+           _brandRepository = brandRepository;
         }
 
         public async Task<int> CreateWithImage(ProductRequestDTO request)
         {
-            var entity = request.Adapt<Product>();
-            entity.CreatedAt = DateTime.UtcNow;
-            var CheckCategory = await _categoryRepository.GetByIdAsync(request.CategoryId);
-            if (CheckCategory == null)
-            {
-                throw new Exception("Category Not Found");
-            }
-            if (request.BrandId != null)
-            {
-                var CheckBrand = await _brandRepository.GetByIdAsync(request.BrandId.Value);
-                if (CheckBrand == null)
-                {
-                    throw new Exception("Brand Not Found");
-                }
-            }
+            if (await _categoryRepository.GetByIdAsync(request.CategoryId) is null)
+                throw new KeyNotFoundException("Category Not Found");
 
-            if (request.MainImage != null)
-            {
-                var imagePath = await _fileService.UploadAsync(request.MainImage);
-                entity.MainImage = imagePath;
-            }
-            return await _productRepository.CreateAsync(entity);
+            if (request.BrandId is int brandId &&
+                await _brandRepository.GetByIdAsync(brandId) is null)
+                throw new KeyNotFoundException("Brand Not Found");
+            return await base.CreateAsync(request, true, "product");
         }
     }
 }

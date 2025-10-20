@@ -35,9 +35,9 @@ namespace EA_Ecommerce.PL.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateCategory([FromBody] CategoryRequestDTO request)
+        public async Task<IActionResult> CreateCategory([FromForm] CategoryRequestDTO request)
         {
-            int id = await _categoryService.CreateWithImage(request);
+            int id = await _categoryService.CreateAsync(request , true, "Category");
             return CreatedAtAction(nameof(GetById), new { id = id }, new { message = "Category created successfully" });
         }
 
