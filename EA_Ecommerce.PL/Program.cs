@@ -4,6 +4,7 @@ using EA_Ecommerce.BLL.Services.Authentication;
 using EA_Ecommerce.BLL.Services.Brand;
 using EA_Ecommerce.BLL.Services.Carts;
 using EA_Ecommerce.BLL.Services.Categories;
+using EA_Ecommerce.BLL.Services.CheckOut;
 using EA_Ecommerce.BLL.Services.Files;
 using EA_Ecommerce.BLL.Services.Products;
 using EA_Ecommerce.DAL.Data;
@@ -41,6 +42,7 @@ namespace EA_Ecommerce.PL
             builder.Services.AddScoped<IProductRepository, ProductRepository>();
             builder.Services.AddScoped<ICartRepository, CartRepository>();
             builder.Services.AddScoped<ICartService, CartService>();
+            builder.Services.AddScoped<ICheckOutService, CheckOutService>();
             builder.Services.AddScoped<IBrandService, BrandService>();
             builder.Services.AddScoped<ISeedData, SeedData>();
             builder.Services.AddScoped<IAuthenticationService, AuthenticationService>();
