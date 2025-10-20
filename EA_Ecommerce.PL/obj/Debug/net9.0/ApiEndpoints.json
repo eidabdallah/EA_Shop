@@ -292,6 +292,32 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "EA_Ecommerce.PL.Areas.Customer.Controllers.CartController",
+    "Method": "AddToCart",
+    "RelativePath": "api/Customer/Cart",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "EA_Ecommerce.DAL.DTO.Requests.Cart.CartRequestDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EA_Ecommerce.PL.Areas.Customer.Controllers.CartController",
+    "Method": "GetCart",
+    "RelativePath": "api/Customer/Cart",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "EA_Ecommerce.PL.Areas.Customer.Controllers.CategoryController",
     "Method": "GetAllCategories",
     "RelativePath": "api/Customer/Category",

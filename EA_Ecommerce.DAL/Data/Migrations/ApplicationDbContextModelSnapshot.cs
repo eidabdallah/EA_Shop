@@ -133,6 +133,24 @@ namespace EA_Ecommerce.DAL.Data.Migrations
                     b.ToTable("Brands");
                 });
 
+            modelBuilder.Entity("EA_Ecommerce.DAL.Models.Cart", b =>
+                {
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<int>("Count")
+                        .HasColumnType("int");
+
+                    b.HasKey("ProductId", "UserId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Carts");
+                });
+
             modelBuilder.Entity("EA_Ecommerce.DAL.Models.Category", b =>
                 {
                     b.Property<int>("Id")
@@ -259,6 +277,25 @@ namespace EA_Ecommerce.DAL.Data.Migrations
                     b.HasIndex("RoleId");
 
                     b.ToTable("UserRoles", (string)null);
+                });
+
+            modelBuilder.Entity("EA_Ecommerce.DAL.Models.Cart", b =>
+                {
+                    b.HasOne("EA_Ecommerce.DAL.Models.Product", "Product")
+                        .WithMany()
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("EA_Ecommerce.DAL.Models.ApplicationUser", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Product");
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("EA_Ecommerce.DAL.Models.Product", b =>

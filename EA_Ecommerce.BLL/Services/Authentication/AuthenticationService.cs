@@ -5,6 +5,7 @@ using EA_Ecommerce.DAL.DTO.Requests.RegisterRequestDTO;
 using EA_Ecommerce.DAL.DTO.Requests.ResetPassword;
 using EA_Ecommerce.DAL.DTO.Responses.User;
 using EA_Ecommerce.DAL.Models;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.Data;
 using Microsoft.AspNetCore.Identity.UI.Services;
@@ -25,12 +26,15 @@ namespace EA_Ecommerce.BLL.Services.Authentication
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly IConfiguration _configuration;
         private readonly IEmailSender _emailSender;
+        private readonly SignInManager<ApplicationUser> _signInManager;
 
-        public AuthenticationService(UserManager<ApplicationUser> userManager , IConfiguration configuration , IEmailSender emailSender)
+        public AuthenticationService(UserManager<ApplicationUser> userManager , IConfiguration configuration ,
+            IEmailSender emailSender , SignInManager<ApplicationUser> signInManager)
         {
             _userManager = userManager;
             _configuration = configuration;
             _emailSender = emailSender;
+            _signInManager = signInManager;
         }
         public async Task<string> ConfirmEmail(string token , string userId)
         {
@@ -47,7 +51,7 @@ namespace EA_Ecommerce.BLL.Services.Authentication
             return "Error while confirming your email";
             
         }
-        public async Task<UserResponseDTO> RegisterAsync(RegisterRequestDTO RegisterRequest)
+        public async Task<UserResponseDTO> RegisterAsync(RegisterRequestDTO RegisterRequest , HttpRequest request)
         {
             var user = new ApplicationUser()
             {
@@ -61,7 +65,7 @@ namespace EA_Ecommerce.BLL.Services.Authentication
             {
                 var token = await _userManager.GenerateEmailConfirmationTokenAsync(user);
                 var escapedToken = Uri.EscapeDataString(token);
-                var emailUrl = $"https://localhost:7169/api/Identity/Account/ConfirmEmail?token={escapedToken}&userId={user.Id}";
+                var emailUrl = $"{request.Scheme}://{request.Host}/api/Identity/Account/ConfirmEmail?token={escapedToken}&userId={user.Id}";
                 await _emailSender.SendEmailAsync(RegisterRequest.Email, "Confirm your email",
                     $"<h1>hello ya {user.UserName} ❤️</h1>" + $"<a href='{emailUrl}'>Confirm</a>");
                 return new UserResponseDTO()
@@ -79,19 +83,24 @@ namespace EA_Ecommerce.BLL.Services.Authentication
             {
                 throw new Exception("Invalid Email or Password");
             }
-            if(!await _userManager.IsEmailConfirmedAsync(user))
+            var result = await _signInManager.CheckPasswordSignInAsync(user, loginRequest.Password, true);
+            if (result.Succeeded)
+            {
+                return new UserResponseDTO()
+                {
+                    Token = await CreateTokenAsync(user)
+                };
+            }else if (result.IsLockedOut)
+            {
+                throw new Exception("Your Account is Locked");
+            }else if (result.IsNotAllowed)
             {
                 throw new Exception("Please Confirm your Email");
-            }
-            var isPasswordValid = await _userManager.CheckPasswordAsync(user, loginRequest.Password);
-            if(!isPasswordValid)
+            }else
             {
                 throw new Exception("Invalid Email or Password");
+
             }
-            return new UserResponseDTO()
-            {
-                Token = await CreateTokenAsync(user)
-            };
         }
         private async Task<string> CreateTokenAsync(ApplicationUser user)
         {

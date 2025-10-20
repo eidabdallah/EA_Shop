@@ -25,7 +25,7 @@ namespace EA_Ecommerce.PL.Areas.Identity.Controllers
         [HttpPost("register")]
         public async Task<ActionResult<UserResponseDTO>> Register([FromBody] RegisterRequestDTO registerRequest)
         {
-            var result = await _authenticationService.RegisterAsync(registerRequest);
+            var result = await _authenticationService.RegisterAsync(registerRequest , Request);
             return Ok(result);
         }
 
