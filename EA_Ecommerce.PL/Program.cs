@@ -109,7 +109,8 @@ namespace EA_Ecommerce.PL
             var scope = app.Services.CreateScope();
             var objectOfSeddDtata = scope.ServiceProvider.GetRequiredService<ISeedData>();
             await objectOfSeddDtata.IdentityDataSeedingAsync();
-            
+            await objectOfSeddDtata.DataSeedingAsync();
+
 
             app.UseHttpsRedirection();
 

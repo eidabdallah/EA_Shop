@@ -63,6 +63,7 @@ namespace EA_Ecommerce.BLL.Services.Authentication
             var result =  await _userManager.CreateAsync(user, RegisterRequest.Password);
             if (result.Succeeded)
             {
+                await _userManager.AddToRoleAsync(user, "Customer");
                 var token = await _userManager.GenerateEmailConfirmationTokenAsync(user);
                 var escapedToken = Uri.EscapeDataString(token);
                 var emailUrl = $"{request.Scheme}://{request.Host}/api/Identity/Account/ConfirmEmail?token={escapedToken}&userId={user.Id}";

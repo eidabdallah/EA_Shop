@@ -22,7 +22,7 @@ namespace EA_Ecommerce.DAL.utils.SeedData
             _roleManager = roleManager;
             _userManager = userManager;
         }
-        /*public async Task DataSeedingAsync()
+        public async Task DataSeedingAsync()
         {
             if ((await _context.Database.GetPendingMigrationsAsync()).Any())
             {
@@ -31,20 +31,20 @@ namespace EA_Ecommerce.DAL.utils.SeedData
             // add : 
             if (! await _context.Categories.AnyAsync()) { 
                 await _context.Categories.AddRangeAsync(
-                    new Category { Name = "Clothes"},
-                    new Category { Name = "Mobile" }
+                    new Category { Name = "Clothes" , MainImage = "https://res.cloudinary.com/deylqxzgk/image/upload/v1748774523/AlBalootiyeh_Store/category/txh9vpucww1tc1x2zsta.avif" },
+                    new Category { Name = "Mobile", MainImage = "https://res.cloudinary.com/deylqxzgk/image/upload/v1748774523/AlBalootiyeh_Store/category/txh9vpucww1tc1x2zsta.avif" }
                     );
             }
             if (! await _context.Brands.AnyAsync()){
                 await _context.Brands.AddRangeAsync(
-                    new Brand { Name = "Samsung" },
-                    new Brand { Name = "Apple" },
-                    new Brand { Name = "Nike" }
+                    new Brand { Name = "Samsung", MainImage = "https://res.cloudinary.com/deylqxzgk/image/upload/v1748774523/AlBalootiyeh_Store/category/txh9vpucww1tc1x2zsta.avif" },
+                    new Brand { Name = "Apple", MainImage = "https://res.cloudinary.com/deylqxzgk/image/upload/v1748774523/AlBalootiyeh_Store/category/txh9vpucww1tc1x2zsta.avif" },
+                    new Brand { Name = "Nike", MainImage = "https://res.cloudinary.com/deylqxzgk/image/upload/v1748774523/AlBalootiyeh_Store/category/txh9vpucww1tc1x2zsta.avif" }
                     );
             }
             await _context.SaveChangesAsync();
 
-        }*/
+        }
 
         public async Task IdentityDataSeedingAsync()
         {
