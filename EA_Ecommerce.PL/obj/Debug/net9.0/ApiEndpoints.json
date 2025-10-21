@@ -60,9 +60,14 @@
         "IsRequired": true
       },
       {
-        "Name": "request",
-        "Type": "EA_Ecommerce.DAL.DTO.Requests.Brand.BrandRequestDTO",
-        "IsRequired": true
+        "Name": "Name",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "MainImage",
+        "Type": "Microsoft.AspNetCore.Http.IFormFile",
+        "IsRequired": false
       }
     ],
     "ReturnTypes": []
@@ -372,11 +377,17 @@
   {
     "ContainingType": "EA_Ecommerce.PL.Areas.Customer.Controllers.CheckOutController",
     "Method": "Success",
-    "RelativePath": "api/Customer/CheckOut/success",
+    "RelativePath": "api/Customer/CheckOut/success/{orderId}",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
-    "Parameters": [],
+    "Parameters": [
+      {
+        "Name": "orderId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
     "ReturnTypes": []
   },
   {

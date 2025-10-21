@@ -20,12 +20,17 @@ namespace EA_Ecommerce.BLL.Services.Carts
                 Count = 1,
                 UserId = UserId
             };
-            return await _cartRepository.Add(newItem) > 0;
+            return await _cartRepository.AddAsync(newItem) > 0;
+        }
+
+        public async Task<bool> ClearCartAsync(string UserId)
+        {
+            return await _cartRepository.ClearCartAsync(UserId);
         }
 
         public async Task<CartSummaryResponse> getCart(string UserId)
         {
-            var cartItems = await _cartRepository.GetUserCart(UserId);
+            var cartItems = await _cartRepository.GetUserCartAsync(UserId);
             var cartResponse = new CartSummaryResponse
             {
                 Items = cartItems.Select(item => new CartResponseDTO

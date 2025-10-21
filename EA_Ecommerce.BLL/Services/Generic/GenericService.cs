@@ -94,14 +94,36 @@ namespace EA_Ecommerce.DAL.Repositories.Generic
             return true;
         }
 
-        public async Task<int> UpdateAsync(int id, TRequest request)
+        public async Task<int> UpdateAsync(int id, TRequest request , string? fileName = null)
         {
             var entity = await _genericRepository.GetByIdAsync(id);
             if (entity is null)
                 return 0;
+            request.Adapt(entity);
+            var mainImageProp = typeof(TRequest).GetProperty("MainImage");
+            var file = mainImageProp?.GetValue(request) as IFormFile;
 
-            var updatedEntity = request.Adapt(entity);
-            return await _genericRepository.UpdateAsync(updatedEntity);
+            if (file is { Length: > 0 })
+            {
+                var publicIdProp = typeof(TEntity).GetProperty("MainImagePublicId");
+                var oldPublicId = publicIdProp?.GetValue(entity) as string;
+                if (!string.IsNullOrWhiteSpace(oldPublicId))
+                {
+                    try
+                    {
+                        await _fileService.DeleteAsync(oldPublicId);
+                    }
+                    catch (Exception ex)
+                    {
+                        throw new Exception("❌ Failed to delete old image", ex);
+                    }
+                }
+                var (url, publicId) = await _fileService.UploadAsync(file , fileName);
+                typeof(TEntity).GetProperty("MainImage")?.SetValue(entity, url);
+                publicIdProp?.SetValue(entity, publicId);
+            }
+            return await _genericRepository.UpdateAsync(entity);
         }
+
     }
 }

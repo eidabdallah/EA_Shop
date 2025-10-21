@@ -16,7 +16,7 @@ namespace EA_Ecommerce.DAL.Repositories.Generic
         Task<IEnumerable<TResponse>> GetAllAsync(bool onlyActive = false);
         Task<TResponse?> GetByIdAsync(int id);
         Task<bool> ToggleStatusAsync(int id);
-        Task<int> UpdateAsync(int id, TRequest request);
+        Task<int> UpdateAsync(int id, TRequest request, string? fileName = null);
     }
 
 }

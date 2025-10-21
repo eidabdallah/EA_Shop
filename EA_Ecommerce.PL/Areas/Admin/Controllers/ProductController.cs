@@ -22,7 +22,7 @@ namespace EA_Ecommerce.PL.Areas.Admin.Controllers
         public async Task<IActionResult> Create([FromForm] ProductRequestDTO request)
         {
             var result = await _productService.CreateWithImage(request);
-            return Ok(result);
+            return Ok(new { Message = "Product added successfully"});
         }
         [HttpGet("")]
         public async Task<IActionResult> GetAllCategories()

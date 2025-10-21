@@ -12,6 +12,8 @@ using EA_Ecommerce.DAL.Models;
 using EA_Ecommerce.DAL.Repositories.Brands;
 using EA_Ecommerce.DAL.Repositories.Carts;
 using EA_Ecommerce.DAL.Repositories.Categories;
+using EA_Ecommerce.DAL.Repositories.Order;
+using EA_Ecommerce.DAL.Repositories.OrderItem;
 using EA_Ecommerce.DAL.Repositories.Products;
 using EA_Ecommerce.DAL.utils.SeedData;
 using EA_Ecommerce.PL.utils;
@@ -47,6 +49,8 @@ namespace EA_Ecommerce.PL
             builder.Services.AddScoped<ISeedData, SeedData>();
             builder.Services.AddScoped<IAuthenticationService, AuthenticationService>();
             builder.Services.AddScoped<IEmailSender, EmailSetting>();
+            builder.Services.AddScoped<IOrderRepository, OrderRepository>();
+            builder.Services.AddScoped<IOrderItemRepository, OrderItemRepository>();
             builder.Services.AddScoped<IFileService, BLL.Services.Files.FileService>();
 
 

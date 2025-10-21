@@ -9,7 +9,8 @@ using System.Threading.Tasks;
 namespace EA_Ecommerce.DAL.Repositories.Carts
 {
     public interface ICartRepository {
-        Task<int> Add(Cart cart);
-        Task<List<Cart>> GetUserCart(string UserId);
+        Task<int> AddAsync(Cart cart);
+        Task<List<Cart>> GetUserCartAsync(string UserId);
+        Task<bool> ClearCartAsync(string UserId);
     } 
 }

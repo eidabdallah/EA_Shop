@@ -31,11 +31,11 @@ namespace EA_Ecommerce.BLL.Services.Products
         public async Task<int> CreateWithImage(ProductRequestDTO request)
         {
             if (await _categoryRepository.GetByIdAsync(request.CategoryId) is null)
-                throw new KeyNotFoundException("Category Not Found");
+                throw new Exception("Category Not Found");
 
             if (request.BrandId is int brandId &&
                 await _brandRepository.GetByIdAsync(brandId) is null)
-                throw new KeyNotFoundException("Brand Not Found");
+                throw new Exception("Brand Not Found");
             return await base.CreateAsync(request, true, "product");
         }
     }

@@ -19,7 +19,7 @@ namespace EA_Ecommerce.PL.Areas.Customer.Controllers
         [HttpGet]
         public async Task<IActionResult> GetAllBrand()
         {
-            var brands = await _brandService.GetAllAsync();
+            var brands = await _brandService.GetAllAsync(true);
             return Ok(brands);
         }
 

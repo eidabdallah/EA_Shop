@@ -20,15 +20,21 @@ namespace EA_Ecommerce.DAL.Repositories.Carts
             _context = context;
         }
 
-        public async Task<int> Add(Cart cart)
+        public async Task<int> AddAsync(Cart cart)
         {
-            _context.Carts.Add(cart);
+            await _context.Carts.AddAsync(cart);
             return await _context.SaveChangesAsync();
         }
-
-        public async Task<List<Cart>> GetUserCart(string UserId)
+        public async Task<List<Cart>> GetUserCartAsync(string UserId)
         {
-            return _context.Carts.Include(c=> c.Product).Where(c => c.UserId == UserId).ToList();
+            return await _context.Carts.Include(c=> c.Product).Where(c => c.UserId == UserId).ToListAsync();
+        }
+        public async Task<bool> ClearCartAsync(string UserId)
+        {
+            var items = _context.Carts.Where(c => c.UserId == UserId).ToList();
+            _context.Carts.RemoveRange(items);
+            await _context.SaveChangesAsync();
+            return true;
         }
     }
 }

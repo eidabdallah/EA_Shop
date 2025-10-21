@@ -12,5 +12,6 @@ namespace EA_Ecommerce.BLL.Services.Carts
     {
         Task<bool> AddToCart (CartRequestDTO request , string UserId);
         Task<CartSummaryResponse> getCart(string UserId);
+        Task<bool> ClearCartAsync(string UserId);
     }
 }

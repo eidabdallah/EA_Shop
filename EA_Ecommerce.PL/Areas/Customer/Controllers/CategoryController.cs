@@ -20,7 +20,7 @@ namespace EA_Ecommerce.PL.Areas.Customer.Controllers
         [HttpGet("")]
         public async Task<IActionResult> GetAllCategories()
         {
-            var categories = await _categoryService.GetAllAsync();
+            var categories = await _categoryService.GetAllAsync(true);
             return Ok(categories);
         }
 

@@ -41,9 +41,9 @@ namespace EA_Ecommerce.PL.Areas.Admin.Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> Update([FromRoute] int id, [FromBody] BrandRequestDTO request)
+        public async Task<IActionResult> Update([FromRoute] int id, [FromForm] BrandRequestDTO request)
         {
-            var updated = await _brandService.UpdateAsync(id, request);
+            var updated = await _brandService.UpdateAsync(id, request , "Brand");
             return updated > 0 ? Ok(new { message = "Brand updated" }) : NotFound(new { message = "Brand not found" });
         }
 
