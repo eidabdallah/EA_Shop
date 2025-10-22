@@ -11,5 +11,7 @@ namespace EA_Ecommerce.DAL.Repositories.Order
     {
         Task<DAL.Models.Order?> GetUserByOrderAsync(int orderId);
         Task<DAL.Models.Order?> CreateAsync(DAL.Models.Order order);
+        Task<List<Models.Order>> GetOrdersByStatusAsync(OrderStatusEnum Status);
+        Task<List<Models.Order>> GetAllOrdersByUserAsync(string UserId);
     }
 }

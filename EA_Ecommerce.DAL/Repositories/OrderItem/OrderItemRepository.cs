@@ -18,7 +18,7 @@ namespace EA_Ecommerce.DAL.Repositories.OrderItem
         public async Task AddAsync(List<Models.OrderItem> items)
         {
             await _context.OrderItems.AddRangeAsync(items);
-            await  _context.SaveChangesAsync();
+            //await  _context.SaveChangesAsync();
         }
     }
 }

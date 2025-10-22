@@ -1,7 +1,9 @@
 ﻿using EA_Ecommerce.DAL.Data;
+using EA_Ecommerce.DAL.Data.Migrations;
 using EA_Ecommerce.DAL.Models;
 using EA_Ecommerce.DAL.Repositories.Categories;
 using EA_Ecommerce.DAL.Repositories.Generic;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,6 +14,28 @@ namespace EA_Ecommerce.DAL.Repositories.Products
 {
     public class ProductRepository : GenericRepository<Product>, IProductRepository
     {
-        public ProductRepository(ApplicationDbContext context) : base(context) { }
+        private readonly ApplicationDbContext _context;
+
+        public ProductRepository(ApplicationDbContext context) : base(context)
+        {
+            _context = context;
+        }
+        public async Task DecreaseQunatityAsync(List<(int productId, int quantity)> items)
+        {
+            var productIds = items.Select(i => i.productId).ToList();
+            var products = await _context.Products.Where(p => productIds.Contains(p.Id)).ToListAsync();
+
+
+            foreach (var product in products)
+            { 
+               var item = items.First(i => i.productId == product.Id);
+                if (product.Quantity < item.quantity)
+                {
+                     throw new Exception($"Insufficient stock for product ID {product.Id}.");
+                }
+                product.Quantity -= item.quantity;
+            }
+            //await _context.SaveChangesAsync();
+        }
     }
 }

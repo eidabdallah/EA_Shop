@@ -33,7 +33,7 @@ namespace EA_Ecommerce.DAL.Repositories.Carts
         {
             var items = _context.Carts.Where(c => c.UserId == UserId).ToList();
             _context.Carts.RemoveRange(items);
-            await _context.SaveChangesAsync();
+            //await _context.SaveChangesAsync();
             return true;
         }
     }

@@ -7,6 +7,7 @@ using EA_Ecommerce.BLL.Services.Categories;
 using EA_Ecommerce.BLL.Services.CheckOut;
 using EA_Ecommerce.BLL.Services.Files;
 using EA_Ecommerce.BLL.Services.Products;
+using EA_Ecommerce.BLL.Services.User;
 using EA_Ecommerce.DAL.Data;
 using EA_Ecommerce.DAL.Models;
 using EA_Ecommerce.DAL.Repositories.Brands;
@@ -15,6 +16,8 @@ using EA_Ecommerce.DAL.Repositories.Categories;
 using EA_Ecommerce.DAL.Repositories.Order;
 using EA_Ecommerce.DAL.Repositories.OrderItem;
 using EA_Ecommerce.DAL.Repositories.Products;
+using EA_Ecommerce.DAL.Repositories.UnitOfWork.CheckOutUnitOfWork;
+using EA_Ecommerce.DAL.Repositories.User;
 using EA_Ecommerce.DAL.utils.SeedData;
 using EA_Ecommerce.PL.utils;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -52,6 +55,12 @@ namespace EA_Ecommerce.PL
             builder.Services.AddScoped<IOrderRepository, OrderRepository>();
             builder.Services.AddScoped<IOrderItemRepository, OrderItemRepository>();
             builder.Services.AddScoped<IFileService, BLL.Services.Files.FileService>();
+            builder.Services.AddScoped<IUserRepository, UserRepository>();
+            builder.Services.AddScoped<IUserService, UserService>();
+
+
+            //builder.Services.AddScoped<ICheckOutUnitOfWorkRepository, CheckOutUnitOfWorkRepository>();
+
 
 
             builder.Services.Configure<CloudinarySettings>(builder.Configuration.GetSection("Cloudinary"));
@@ -120,6 +129,7 @@ namespace EA_Ecommerce.PL
 
             app.UseHttpsRedirection();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseStaticFiles();
