@@ -6,6 +6,7 @@ using EA_Ecommerce.BLL.Services.Carts;
 using EA_Ecommerce.BLL.Services.Categories;
 using EA_Ecommerce.BLL.Services.CheckOut;
 using EA_Ecommerce.BLL.Services.Files;
+using EA_Ecommerce.BLL.Services.Order;
 using EA_Ecommerce.BLL.Services.Products;
 using EA_Ecommerce.BLL.Services.User;
 using EA_Ecommerce.DAL.Data;
@@ -53,6 +54,7 @@ namespace EA_Ecommerce.PL
             builder.Services.AddScoped<IAuthenticationService, AuthenticationService>();
             builder.Services.AddScoped<IEmailSender, EmailSetting>();
             builder.Services.AddScoped<IOrderRepository, OrderRepository>();
+            builder.Services.AddScoped<IOrderService , OrderService>();
             builder.Services.AddScoped<IOrderItemRepository, OrderItemRepository>();
             builder.Services.AddScoped<IFileService, BLL.Services.Files.FileService>();
             builder.Services.AddScoped<IUserRepository, UserRepository>();

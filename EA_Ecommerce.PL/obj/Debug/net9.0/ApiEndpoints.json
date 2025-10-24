@@ -205,6 +205,59 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "EA_Ecommerce.PL.Areas.Admin.Controllers.OrderController",
+    "Method": "GetUserOrders",
+    "RelativePath": "api/Admin/Order/{userId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "userId",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EA_Ecommerce.PL.Areas.Admin.Controllers.OrderController",
+    "Method": "ChangeOrderStatus",
+    "RelativePath": "api/Admin/Order/change-status/{orderId}",
+    "HttpMethod": "PATCH",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "orderId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "request",
+        "Type": "EA_Ecommerce.DAL.DTO.Requests.Order.OrderRequestDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EA_Ecommerce.PL.Areas.Admin.Controllers.OrderController",
+    "Method": "GetOrdersByStatus",
+    "RelativePath": "api/Admin/Order/status/{status}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "status",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "EA_Ecommerce.PL.Areas.Admin.Controllers.ProductController",
     "Method": "Create",
     "RelativePath": "api/Admin/Product",

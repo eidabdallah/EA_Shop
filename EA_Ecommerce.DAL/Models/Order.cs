@@ -23,7 +23,7 @@ namespace EA_Ecommerce.DAL.Models
     {
         // order
         public int Id { get; set; }
-        public OrderStatusEnum OrderStatus { get; set; } = OrderStatusEnum.Pending;
+        public OrderStatusEnum OrderStatus { get; set; } = OrderStatusEnum.Approved;
         public DateTime OrderDate { get; set; } = DateTime.Now;
         public DateTime ShippedDate { get; set; }
         public decimal TotalAmount { get; set; }
