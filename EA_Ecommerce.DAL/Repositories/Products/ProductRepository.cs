@@ -35,7 +35,15 @@ namespace EA_Ecommerce.DAL.Repositories.Products
                 }
                 product.Quantity -= item.quantity;
             }
-            //await _context.SaveChangesAsync();
+            await _context.SaveChangesAsync();
         }
+
+        public async Task<List<Product>> GetAllProductsWithImagesAsync()
+        {
+            return await _context.Products
+                .Include(p => p.ProductImages)
+                .ToListAsync();
+        }
+
     }
 }

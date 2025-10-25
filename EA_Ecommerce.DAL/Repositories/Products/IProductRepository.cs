@@ -10,5 +10,6 @@ namespace EA_Ecommerce.DAL.Repositories.Products
 {
     public interface IProductRepository : IGenericRepository<Product> {
         Task DecreaseQunatityAsync(List<(int productId, int quantity)> items);
+        Task<List<Product>> GetAllProductsWithImagesAsync();
     }
 }

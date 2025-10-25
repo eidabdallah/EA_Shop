@@ -59,5 +59,21 @@ namespace EA_Ecommerce.BLL.Services.Files
 
             return (result.SecureUrl!.ToString(), result.PublicId!);
         }
+        public async Task<List<(string Url, string PublicId)>> UploadMultipleAsync(List<IFormFile> files, string? folderName = null)
+        {
+            if (files == null || files.Count == 0)
+                throw new ArgumentException("No files provided");
+
+            var results = new List<(string Url, string PublicId)>();
+
+            foreach (var file in files)
+            {
+                var (url, publicId) = await UploadAsync(file, folderName);
+                results.Add((url, publicId));
+            }
+
+            return results;
+        }
+
     }
 }

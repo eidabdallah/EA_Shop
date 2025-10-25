@@ -1,4 +1,5 @@
-﻿using EA_Ecommerce.DAL.DTO.Requests.Category;
+﻿using Azure;
+using EA_Ecommerce.DAL.DTO.Requests.Category;
 using EA_Ecommerce.DAL.DTO.Requests.Product;
 using EA_Ecommerce.DAL.DTO.Responses.Category;
 using EA_Ecommerce.DAL.DTO.Responses.Product;
@@ -14,5 +15,6 @@ namespace EA_Ecommerce.BLL.Services.Products
 {
     public interface IProductService : IGenericService<ProductRequestDTO, ProductResponseDTO, Product> {
        Task<int> CreateWithImage(ProductRequestDTO request);
+        Task<List<ProductResponseDTO>> GetAllProductAsync(bool onlyActive = false);
     }
 }

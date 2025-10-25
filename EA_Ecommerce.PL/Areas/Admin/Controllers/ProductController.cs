@@ -27,7 +27,7 @@ namespace EA_Ecommerce.PL.Areas.Admin.Controllers
         [HttpGet("")]
         public async Task<IActionResult> GetAllCategories()
         {
-            var result = await _productService.GetAllAsync();
+            var result = await _productService.GetAllProductAsync();
             return Ok(result);
         }
     }

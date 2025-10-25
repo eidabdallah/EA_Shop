@@ -20,9 +20,7 @@ namespace EA_Ecommerce.DAL.Data
         public DbSet<Cart> Carts { get; set; }
         public DbSet<Order> Orders { get; set; }
         public DbSet<OrderItem> OrderItems { get; set; }
-
-
-
+        public DbSet<ProductImage> productImages  { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder builder)

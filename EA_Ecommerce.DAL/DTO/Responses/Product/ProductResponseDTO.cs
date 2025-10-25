@@ -20,5 +20,7 @@ namespace EA_Ecommerce.DAL.DTO.Responses.Product
         public string MainImage { get; set; }
         public int CategoryId { get; set; }
         public int? BrandId { get; set; }
+        public List<string> SubImages { get; set; } = new List<string>();
+
     }
 }

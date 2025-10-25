@@ -28,7 +28,7 @@ namespace EA_Ecommerce.DAL.Repositories.Generic
             _fileService = fileService;
         }
 
-        public async Task<int> CreateAsync(TRequest request , bool WithImage = false , string? fileName = null)
+        public async Task<int> CreateAsync(TRequest request , bool WithImage = false , string? fileName = null , bool WithMultipleImage = false)
         {
             var entity = request.Adapt<TEntity>();
             entity.CreatedAt = DateTime.UtcNow;
@@ -41,6 +41,21 @@ namespace EA_Ecommerce.DAL.Repositories.Generic
                     var (url, publicId) = await _fileService.UploadAsync(file, fileName);
                     typeof(TEntity).GetProperty("MainImage")?.SetValue(entity, url);
                     typeof(TEntity).GetProperty("MainImagePublicId")?.SetValue(entity, publicId);
+                }
+            }
+            if (WithMultipleImage && entity is EA_Ecommerce.DAL.Models.Product productEntity)
+            {
+                var subImagesProp = typeof(TRequest).GetProperty("SubImages");
+                var files = subImagesProp?.GetValue(request) as List<IFormFile>;
+                if (files != null && files.Any())
+                {
+                    var uploads = await _fileService.UploadMultipleAsync(files, fileName);
+                    var productImages = uploads.Select(img => new EA_Ecommerce.DAL.Models.ProductImage
+                    {
+                        ImageUrl = img.Url,
+                        ImagePublicId = img.PublicId
+                    }).ToList();
+                    productEntity.ProductImages.AddRange(productImages);
                 }
             }
             return await _genericRepository.CreateAsync(entity);

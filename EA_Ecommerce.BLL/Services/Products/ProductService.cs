@@ -20,11 +20,14 @@ namespace EA_Ecommerce.BLL.Services.Products
 {
     public class ProductService : GenericService<ProductRequestDTO, ProductResponseDTO, Product>, IProductService
     {
+        private readonly IProductRepository _productRepository;
         private readonly ICategoryRepository _categoryRepository;
         private readonly IBrandRepository _brandRepository;
+
         public ProductService(IProductRepository productRepository , IFileService fileService 
             , ICategoryRepository categoryRepository , IBrandRepository brandRepository) : base(productRepository , fileService) {
-           _categoryRepository = categoryRepository;
+            _productRepository = productRepository;
+            _categoryRepository = categoryRepository;
            _brandRepository = brandRepository;
         }
 
@@ -36,7 +39,29 @@ namespace EA_Ecommerce.BLL.Services.Products
             if (request.BrandId is int brandId &&
                 await _brandRepository.GetByIdAsync(brandId) is null)
                 throw new Exception("Brand Not Found");
-            return await base.CreateAsync(request, true, "product");
+            return await base.CreateAsync(request, true, "product" , true);
+        }
+
+        public async Task<List<ProductResponseDTO>> GetAllProductAsync(bool onlyActive = false)
+        {
+            var products = await _productRepository.GetAllProductsWithImagesAsync();
+            if (onlyActive)
+                products = products.Where(p => p.Status == Status.Active).ToList();
+
+            return products.Select(p=> new ProductResponseDTO
+            {
+                Id = p.Id,
+                Name = p.Name,
+                Description = p.Description,
+                Price = p.Price,
+                Discount = p.Discount,
+                Quantity = p.Quantity,
+                Rate = p.Rate,
+                MainImage = p.MainImage,
+                CategoryId = p.CategoryId,
+                BrandId = p.BrandId,
+                SubImages = p.ProductImages?.Select(pi => pi.ImageUrl).ToList() ?? new List<string>()
+            }).ToList();
         }
     }
 }

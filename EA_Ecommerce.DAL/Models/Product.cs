@@ -16,11 +16,10 @@ namespace EA_Ecommerce.DAL.Models
         public double Rate { get; set; }
         public string MainImage { get; set; }          
         public string? MainImagePublicId { get; set; }
-
         public Category Category { get; set; }
         public int CategoryId { get; set; }
         public Brand? Brand { get; set; }
         public int? BrandId { get; set; }
-
+        public List<ProductImage> ProductImages { get; set; } = new List<ProductImage>();
     }
 }
