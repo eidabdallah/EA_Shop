@@ -48,5 +48,12 @@ namespace EA_Ecommerce.DAL.Repositories.Order
             order.OrderStatus = newStatus;
             return await _context.SaveChangesAsync() > 0;
         }
+    
+        public async Task<bool> UserHasApprovedOrderForProductAsync(string userId, int productId)
+        {
+            return await _context.Orders.Include(o => o.OrderItems).AnyAsync(o => o.UserId == userId 
+                               && o.OrderStatus == OrderStatusEnum.Approved 
+                               && o.OrderItems.Any(oi => oi.ProductId == productId));
+        }
     }
 }

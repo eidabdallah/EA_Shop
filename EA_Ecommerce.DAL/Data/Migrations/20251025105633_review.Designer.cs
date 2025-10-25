@@ -4,6 +4,7 @@ using EA_Ecommerce.DAL.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EA_Ecommerce.DAL.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20251025105633_review")]
+    partial class review
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -353,15 +356,17 @@ namespace EA_Ecommerce.DAL.Data.Migrations
                     b.Property<DateTime>("ReviewDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("UserId")
-                        .IsRequired()
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("UserId1")
                         .HasColumnType("nvarchar(450)");
 
                     b.HasKey("Id");
 
                     b.HasIndex("ProductId");
 
-                    b.HasIndex("UserId");
+                    b.HasIndex("UserId1");
 
                     b.ToTable("Reviews");
                 });
@@ -441,7 +446,7 @@ namespace EA_Ecommerce.DAL.Data.Migrations
             modelBuilder.Entity("EA_Ecommerce.DAL.Models.OrderItem", b =>
                 {
                     b.HasOne("EA_Ecommerce.DAL.Models.Order", "Order")
-                        .WithMany("OrderItems")
+                        .WithMany()
                         .HasForeignKey("OrderId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -495,9 +500,7 @@ namespace EA_Ecommerce.DAL.Data.Migrations
 
                     b.HasOne("EA_Ecommerce.DAL.Models.ApplicationUser", "User")
                         .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("UserId1");
 
                     b.Navigation("Product");
 
@@ -527,11 +530,6 @@ namespace EA_Ecommerce.DAL.Data.Migrations
             modelBuilder.Entity("EA_Ecommerce.DAL.Models.Category", b =>
                 {
                     b.Navigation("products");
-                });
-
-            modelBuilder.Entity("EA_Ecommerce.DAL.Models.Order", b =>
-                {
-                    b.Navigation("OrderItems");
                 });
 
             modelBuilder.Entity("EA_Ecommerce.DAL.Models.Product", b =>

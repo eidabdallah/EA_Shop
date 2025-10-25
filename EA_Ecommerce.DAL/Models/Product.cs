@@ -21,5 +21,6 @@ namespace EA_Ecommerce.DAL.Models
         public Brand? Brand { get; set; }
         public int? BrandId { get; set; }
         public List<ProductImage> ProductImages { get; set; } = new List<ProductImage>();
+        public List<Review> Reviews { get; set; } = new List<Review>();
     }
 }

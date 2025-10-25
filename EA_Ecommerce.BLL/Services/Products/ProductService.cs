@@ -4,6 +4,7 @@ using EA_Ecommerce.DAL.DTO.Requests.Category;
 using EA_Ecommerce.DAL.DTO.Requests.Product;
 using EA_Ecommerce.DAL.DTO.Responses.Category;
 using EA_Ecommerce.DAL.DTO.Responses.Product;
+using EA_Ecommerce.DAL.DTO.Responses.Review;
 using EA_Ecommerce.DAL.Models;
 using EA_Ecommerce.DAL.Repositories.Brands;
 using EA_Ecommerce.DAL.Repositories.Categories;
@@ -42,13 +43,14 @@ namespace EA_Ecommerce.BLL.Services.Products
             return await base.CreateAsync(request, true, "product" , true);
         }
 
-        public async Task<List<ProductResponseDTO>> GetAllProductAsync(bool onlyActive = false)
+        public async Task<List<ProductResponseDTO>> GetAllProductAsync(int pageNumber = 1, int pageSize = 1, bool onlyActive = false)
         {
             var products = await _productRepository.GetAllProductsWithImagesAsync();
             if (onlyActive)
                 products = products.Where(p => p.Status == Status.Active).ToList();
 
-            return products.Select(p=> new ProductResponseDTO
+            var pagedProducts = products.Skip((pageNumber - 1) * pageSize).Take(pageSize).ToList();
+            return pagedProducts.Select(p=> new ProductResponseDTO
             {
                 Id = p.Id,
                 Name = p.Name,
@@ -60,7 +62,15 @@ namespace EA_Ecommerce.BLL.Services.Products
                 MainImage = p.MainImage,
                 CategoryId = p.CategoryId,
                 BrandId = p.BrandId,
-                SubImages = p.ProductImages?.Select(pi => pi.ImageUrl).ToList() ?? new List<string>()
+                SubImages = p.ProductImages?.Select(pi => pi.ImageUrl).ToList() ?? new List<string>(),
+                Reviews = p.Reviews.Select(r => new ReviewResponseDTO
+                {
+                    Id = r.Id,
+                    Rate = r.Rate,
+                    Comment = r.Comment,
+                    FullName = r.User.FullName
+
+                }).ToList(),
             }).ToList();
         }
     }

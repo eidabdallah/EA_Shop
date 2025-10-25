@@ -325,7 +325,18 @@
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
-    "Parameters": [],
+    "Parameters": [
+      {
+        "Name": "pageNumber",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "pageSize",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
     "ReturnTypes": []
   },
   {
@@ -543,6 +554,22 @@
       {
         "Name": "orderId",
         "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EA_Ecommerce.PL.Areas.Customer.Controllers.ReviewController",
+    "Method": "AddReview",
+    "RelativePath": "api/Customer/Review",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "EA_Ecommerce.DAL.DTO.Requests.Reviews.ReviewRequestDTO",
         "IsRequired": true
       }
     ],

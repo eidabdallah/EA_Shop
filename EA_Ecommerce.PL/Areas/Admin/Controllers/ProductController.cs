@@ -25,9 +25,9 @@ namespace EA_Ecommerce.PL.Areas.Admin.Controllers
             return Ok(new { Message = "Product added successfully"});
         }
         [HttpGet("")]
-        public async Task<IActionResult> GetAllCategories()
+        public async Task<IActionResult> GetAllCategories([FromQuery] int pageNumber = 1 , [FromQuery] int pageSize = 5)
         {
-            var result = await _productService.GetAllProductAsync();
+            var result = await _productService.GetAllProductAsync(pageNumber , pageSize , false);
             return Ok(result);
         }
     }

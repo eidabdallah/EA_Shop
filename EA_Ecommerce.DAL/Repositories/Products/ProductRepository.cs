@@ -41,7 +41,7 @@ namespace EA_Ecommerce.DAL.Repositories.Products
         public async Task<List<Product>> GetAllProductsWithImagesAsync()
         {
             return await _context.Products
-                .Include(p => p.ProductImages)
+                .Include(p => p.ProductImages).Include(p=> p.Reviews).ThenInclude(r=> r.User)
                 .ToListAsync();
         }
 

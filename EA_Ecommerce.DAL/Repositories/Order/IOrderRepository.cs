@@ -14,5 +14,6 @@ namespace EA_Ecommerce.DAL.Repositories.Order
         Task<List<Models.Order>> GetOrdersByStatusAsync(OrderStatusEnum Status);
         Task<List<Models.Order>> GetAllOrdersByUserAsync(string UserId);
         Task<bool> ChangeStatusAsync(int orderId, OrderStatusEnum newStatus);
+        Task<bool> UserHasApprovedOrderForProductAsync(string userId, int productId);
     }
 }

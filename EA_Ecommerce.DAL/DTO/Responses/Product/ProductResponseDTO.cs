@@ -1,4 +1,5 @@
-﻿using System;
+﻿using EA_Ecommerce.DAL.DTO.Responses.Review;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -21,6 +22,7 @@ namespace EA_Ecommerce.DAL.DTO.Responses.Product
         public int CategoryId { get; set; }
         public int? BrandId { get; set; }
         public List<string> SubImages { get; set; } = new List<string>();
+        public List<ReviewResponseDTO> Reviews { get; set; } = new List<ReviewResponseDTO>();
 
     }
 }

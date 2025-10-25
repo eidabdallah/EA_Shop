@@ -8,6 +8,7 @@ using EA_Ecommerce.BLL.Services.CheckOut;
 using EA_Ecommerce.BLL.Services.Files;
 using EA_Ecommerce.BLL.Services.Order;
 using EA_Ecommerce.BLL.Services.Products;
+using EA_Ecommerce.BLL.Services.Reviews;
 using EA_Ecommerce.BLL.Services.User;
 using EA_Ecommerce.DAL.Data;
 using EA_Ecommerce.DAL.Models;
@@ -17,6 +18,7 @@ using EA_Ecommerce.DAL.Repositories.Categories;
 using EA_Ecommerce.DAL.Repositories.Order;
 using EA_Ecommerce.DAL.Repositories.OrderItem;
 using EA_Ecommerce.DAL.Repositories.Products;
+using EA_Ecommerce.DAL.Repositories.Reviews;
 using EA_Ecommerce.DAL.Repositories.UnitOfWork.CheckOutUnitOfWork;
 using EA_Ecommerce.DAL.Repositories.User;
 using EA_Ecommerce.DAL.utils.SeedData;
@@ -59,6 +61,9 @@ namespace EA_Ecommerce.PL
             builder.Services.AddScoped<IFileService, BLL.Services.Files.FileService>();
             builder.Services.AddScoped<IUserRepository, UserRepository>();
             builder.Services.AddScoped<IUserService, UserService>();
+            builder.Services.AddScoped<IReviewRepository, ReviewRepository>();
+            builder.Services.AddScoped<IReviewService, BLL.Services.Reviews.ReviewService>();
+
 
 
             //builder.Services.AddScoped<ICheckOutUnitOfWorkRepository, CheckOutUnitOfWorkRepository>();
