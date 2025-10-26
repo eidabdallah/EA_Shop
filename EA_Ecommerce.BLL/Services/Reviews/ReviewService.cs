@@ -28,5 +28,15 @@ namespace EA_Ecommerce.BLL.Services.Reviews
             return true;
 
         }
+        public async Task<bool> DeleteReviewAsync(int reviewId, string userId)
+        {
+            return await _reviewRepository.DeleteReviewAsync(reviewId, userId);
+        }
+        public async Task<bool> UpdateReviewAsync(int reviewId, string userId, ReviewUpdateRequestDTO request)
+        {
+            var review = request.Adapt<Review>();
+            return await _reviewRepository.UpdateReviewAsync(reviewId, userId, review);
+        }
     }
+
 }

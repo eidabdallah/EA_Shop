@@ -11,5 +11,7 @@ namespace EA_Ecommerce.DAL.Repositories.Reviews
     {
         Task AddReviewAsync(string userId , Review request);
         Task<bool> UserHasReviewedProductAsync(string userId, int productId);
+        Task <bool> DeleteReviewAsync(int reviewId , string userId);
+        Task<bool> UpdateReviewAsync(int reviewId, string userId , Review request);
     }
 }

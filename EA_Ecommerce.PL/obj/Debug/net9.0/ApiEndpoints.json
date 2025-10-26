@@ -576,6 +576,43 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "EA_Ecommerce.PL.Areas.Customer.Controllers.ReviewController",
+    "Method": "DeleteReview",
+    "RelativePath": "api/Customer/Review/{reviewId}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "reviewId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EA_Ecommerce.PL.Areas.Customer.Controllers.ReviewController",
+    "Method": "UpdateReview",
+    "RelativePath": "api/Customer/Review/{reviewId}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "reviewId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "request",
+        "Type": "EA_Ecommerce.DAL.DTO.Requests.Reviews.ReviewUpdateRequestDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "EA_Ecommerce.PL.Areas.Identity.Controllers.AccountController",
     "Method": "ConfirmEmail",
     "RelativePath": "api/Identity/Account/ConfirmEmail",

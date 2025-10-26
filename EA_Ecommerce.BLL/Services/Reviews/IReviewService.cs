@@ -10,5 +10,8 @@ namespace EA_Ecommerce.BLL.Services.Reviews
     public interface IReviewService
     {
         Task<bool> AddReviewAsync(ReviewRequestDTO request , string UserId);
+        Task<bool> DeleteReviewAsync(int reviewId, string userId);
+        Task<bool> UpdateReviewAsync(int reviewId, string userId, ReviewUpdateRequestDTO request);
+
     }
 }

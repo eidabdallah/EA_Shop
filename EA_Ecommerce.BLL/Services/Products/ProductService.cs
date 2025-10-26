@@ -68,6 +68,7 @@ namespace EA_Ecommerce.BLL.Services.Products
                     Id = r.Id,
                     Rate = r.Rate,
                     Comment = r.Comment,
+                    UserId = r.UserId,
                     FullName = r.User.FullName
 
                 }).ToList(),
