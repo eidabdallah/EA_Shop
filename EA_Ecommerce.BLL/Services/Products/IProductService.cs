@@ -15,6 +15,8 @@ namespace EA_Ecommerce.BLL.Services.Products
 {
     public interface IProductService : IGenericService<ProductRequestDTO, ProductResponseDTO, Product> {
        Task<int> CreateWithImage(ProductRequestDTO request);
-        Task<List<ProductResponseDTO>> GetAllProductAsync(int pageNumber = 1, int pageSize = 1 , bool onlyActive = false);
+       Task<List<ProductResponseDTO>> GetAllProductAsync(int pageNumber = 1, int pageSize = 1 , bool onlyActive = false);
+       Task<ProductResponseDTO> GetProductByIdAsync(int id);
+       Task<bool> DeleteProductAsync(int id);
     }
 }

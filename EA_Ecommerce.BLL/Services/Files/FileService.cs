@@ -26,9 +26,16 @@ namespace EA_Ecommerce.BLL.Services.Files
         {
             if (string.IsNullOrWhiteSpace(publicId))
                 return false;
-
-            var res = await _cloudinary.DestroyAsync(new DeletionParams(publicId));
-            return res.Result == "ok";
+            var deletionParams = new DeletionParams(publicId);
+            try
+            {
+                var res = await _cloudinary.DestroyAsync(deletionParams);
+                return res.Result == "ok" || res.Result == "not found";
+            }
+            catch
+            {
+                return false;
+            }
         }
 
 

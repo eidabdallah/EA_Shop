@@ -22,13 +22,37 @@ namespace EA_Ecommerce.PL.Areas.Admin.Controllers
         public async Task<IActionResult> Create([FromForm] ProductRequestDTO request)
         {
             var result = await _productService.CreateWithImage(request);
+            if(result == 0)
+            {
+                return BadRequest(new { Message = "Invalid Category or Brand Id" });
+            }
             return Ok(new { Message = "Product added successfully"});
         }
         [HttpGet("")]
         public async Task<IActionResult> GetAllCategories([FromQuery] int pageNumber = 1 , [FromQuery] int pageSize = 5)
         {
             var result = await _productService.GetAllProductAsync(pageNumber , pageSize , false);
-            return Ok(result);
+            return Ok(new { Message = "Fetch Product successfully" , result });
+        }
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetProductById([FromRoute] int id)
+        {
+            var result = await _productService.GetProductByIdAsync(id);
+            if(result == null)
+            {
+                return NotFound(new { Message = "Product not found" });
+            }
+            return Ok(new { Message = "Fetch Product successfully", result });
+        }
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteProduct([FromRoute] int id)
+        {
+            var result = await _productService.DeleteProductAsync(id);
+            if(!result)
+            {
+                return NotFound(new { Message = "Product not found" });
+            }
+            return Ok(new { Message = "Product deleted successfully" });
         }
     }
 }
