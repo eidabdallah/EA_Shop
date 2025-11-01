@@ -524,6 +524,48 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "EA_Ecommerce.PL.Areas.Customer.Controllers.CartController",
+    "Method": "ClearCart",
+    "RelativePath": "api/Customer/Cart",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EA_Ecommerce.PL.Areas.Customer.Controllers.CartController",
+    "Method": "DeleteProductFromCart",
+    "RelativePath": "api/Customer/Cart/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EA_Ecommerce.PL.Areas.Customer.Controllers.CartController",
+    "Method": "UpdateProductCount",
+    "RelativePath": "api/Customer/Cart/update-count",
+    "HttpMethod": "PATCH",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "EA_Ecommerce.DAL.DTO.Requests.Cart.CartCountRequestDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "EA_Ecommerce.PL.Areas.Customer.Controllers.CategoryController",
     "Method": "GetAllCategories",
     "RelativePath": "api/Customer/Category",

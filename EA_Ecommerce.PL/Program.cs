@@ -19,7 +19,6 @@ using EA_Ecommerce.DAL.Repositories.Order;
 using EA_Ecommerce.DAL.Repositories.OrderItem;
 using EA_Ecommerce.DAL.Repositories.Products;
 using EA_Ecommerce.DAL.Repositories.Reviews;
-using EA_Ecommerce.DAL.Repositories.UnitOfWork.CheckOutUnitOfWork;
 using EA_Ecommerce.DAL.Repositories.User;
 using EA_Ecommerce.DAL.utils.SeedData;
 using EA_Ecommerce.PL.utils;

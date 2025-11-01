@@ -12,5 +12,7 @@ namespace EA_Ecommerce.DAL.Repositories.Carts
         Task<int> AddAsync(Cart cart);
         Task<List<Cart>> GetUserCartAsync(string UserId);
         Task<bool> ClearCartAsync(string UserId);
+        Task<bool> DeleteProductFromCartAsync(int ProductId, string UserId);
+        Task<bool> UpdateProductCountAsync(int ProductId, string Operation, string UserId);
     } 
 }

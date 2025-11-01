@@ -33,8 +33,36 @@ namespace EA_Ecommerce.DAL.Repositories.Carts
         {
             var items = _context.Carts.Where(c => c.UserId == UserId).ToList();
             _context.Carts.RemoveRange(items);
-            //await _context.SaveChangesAsync();
             return true;
+        }
+        public async Task<bool> DeleteProductFromCartAsync(int ProductId, string UserId)
+        {
+            var item = await _context.Carts.FirstOrDefaultAsync(c => c.ProductId == ProductId && c.UserId == UserId);
+            if (item != null)
+            {
+                _context.Carts.Remove(item);
+                await _context.SaveChangesAsync();
+                return true;
+            }
+            return false;
+        }
+        public async Task<bool> UpdateProductCountAsync(int ProductId, string Operation, string UserId)
+        {
+            var item = await _context.Carts.FirstOrDefaultAsync(c => c.ProductId == ProductId && c.UserId == UserId);
+            if (item != null)
+            {
+                if (Operation == "increase")
+                {
+                    item.Count += 1;
+                }
+                else if (Operation == "decrease" && item.Count > 1)
+                {
+                    item.Count -= 1;
+                }
+                await _context.SaveChangesAsync();
+                return true;
+            }
+            return false;
         }
     }
 }

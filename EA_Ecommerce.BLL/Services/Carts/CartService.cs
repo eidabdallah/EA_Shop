@@ -43,5 +43,13 @@ namespace EA_Ecommerce.BLL.Services.Carts
             };
             return cartResponse;
         }
+        public async Task<bool> DeleteProductFromCartAsync(int ProductId, string UserId)
+        {
+            return await _cartRepository.DeleteProductFromCartAsync(ProductId, UserId);
+        }
+        public async Task<bool> UpdateProductCountAsync(CartCountRequestDTO request, string UserId)
+        {
+           return await _cartRepository.UpdateProductCountAsync(request.ProductId, request.Operation, UserId);
+        }
     }
 }
